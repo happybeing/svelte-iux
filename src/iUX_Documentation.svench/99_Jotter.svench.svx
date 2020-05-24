@@ -1,0 +1,40 @@
+# Jotter
+Miscellaneous stuff to be deleted at some point.
+
+___
+
+
+By combining Svench and Mdsvex, you can write illustrated documentation pages, all while developping your components in isolation. This is some kind of [literate](https://en.wikipedia.org/wiki/Literate_programming) [programming](https://github.com/Rich-Harris/lit-node) workbench.
+
+Start by importing a bit of svench, and a little bit of what you need to illustrate. And maybe some little bit of helpers... but we don't need any presently.
+
+```svelte
+<script>
+  import Foo from './example/Foo.svelte'
+</script>
+
+<Foo/>
+```
+
+Produces the following live component:
+
+<script>
+  import { Render } from 'svench'
+  import Foo from '../example/Foo.svench'
+</script>
+
+# Foo
+
+> A good demo is worth a thousand words... Yet they can't tell the whole story!
+
+Svench wants to facilitate taking notes, explaining intentions, writing docs
+bit, etc. **at the best time to do it**: when you are actively in the process of
+developping your component.
+
+<Render src={Foo} view="default" />
+
+You can also reference external views by raw string path (but it kind of makes
+me cringe):
+
+<Render src="../example/Bar" view="default" />
+

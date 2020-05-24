@@ -1,0 +1,11 @@
+# Svelte incremental UX
+
+Svelte incremental UX (iUX), by [theWelbalyst](https://github.com/theWebalyst/)
+
+# Contents
+1. [Introduction](./_1_Introduction) 
+2. [Installation](./_2_Installation) 
+3. [Components](./_3_Components) 
+
+Copyright (c) 2020. Mark Hughes ([theWelbalyst](https://github.com/theWebalyst/)
+)

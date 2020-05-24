@@ -1,0 +1,11 @@
+## iUX Component TODO List
+This is the first take on what iUX components may be needed and how they can fit together:
+
+- [ ] **IUXContainer** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
+
+- [ ] **IUXTabContainer** - holds a sequence of high level, distinct stages
+
+- [ ] **IUXRevealContainer** - to sequence or manage complexity of subsets of UI within a higher level stage
+
+- [ ] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+

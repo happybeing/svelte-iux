@@ -1,0 +1,8 @@
+<script>
+  import { View } from 'svench'
+  import IUXContainer from './IUXContainer.svelte'
+</script>
+
+<View name="default">
+  <IUXContainer />
+</View>

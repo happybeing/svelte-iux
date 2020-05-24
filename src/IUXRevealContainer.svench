@@ -1,0 +1,8 @@
+<script>
+  import { View } from 'svench'
+  import IUXRevealContainer from './IUXRevealContainer.svelte'
+</script>
+
+<View name="default">
+  <IUXRevealContainer />
+</View>

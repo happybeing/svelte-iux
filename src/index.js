@@ -1,11 +1,4 @@
-// Single default export
-
-// export { default as default } from './Component.svelte';
-
-// OR multiple named exports
-//
-//     import { Foo, Bar } from 'my-lib'
-//
-
-export { default as Foo } from './example/Foo.svelte'
-export { default as Bar } from './example/Bar.svelte'
+export { default as IUXContainer } from './IUXContainer.svelte'
+export { default as IUXRevealArea } from './IUXRevealArea.svelte'
+export { default as IUXRevealContainer } from './IUXRevealContainer.svelte'
+export { default as IUXTabContainer } from './IUXTabContainer.svelte'
