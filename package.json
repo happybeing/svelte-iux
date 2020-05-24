@@ -1,8 +1,19 @@
 {
-  "name": "my-components",
+  "name": "svelte-iux",
+  "version": "0.0.1",
+  "description": "WORK IN PROGRESS - nothing to see here!",
+  "main": "src/index.js",
   "svelte": "src/index.js",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "browser": "src/index.js",
+  "keywords": [
+    "Svelte",
+    "components",
+    "library",
+    "UI",
+    "UX"
+  ],
+  "author": "theWebalyst",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build",
@@ -21,9 +32,6 @@
     "svelte": "^3.22.0",
     "svench": "^0.0.8"
   },
-  "keywords": [
-    "svelte"
-  ],
   "files": [
     "src",
     "dist"

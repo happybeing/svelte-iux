@@ -1,4 +1,9 @@
-.DS_Store
-node_modules
 /dist/
+/node_modules/
+/public/build/
 /public/svench/
+/public/svench.html
+
+.DS_Store
+
+.now
