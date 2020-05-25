@@ -220,6 +220,16 @@ yarn svench
 
 Open http://localhost:4242. Edit / add things in `./src`.
 
+#### build:svench
+
+Build your workbench in `public`. This can be deployed on a public web server.
+
+#### build / dev
+
+Note `build` and `dev` scripts are not applicable when using iUX in a Svelte app as this should always compile from source, otherwise different Svelte compilers may be used which will introduce bugs.
+
+They are left in place to simplify merging of upstream changes from https://github.com/rixo/[svench-component-template](https://github.com/rixo/svench-component-template).
+
 ### Using Svench
 
 Each component has a '.svench' file next to the '.svelte' component file, and this file is used by Svench to create its menu, and provide the context for
