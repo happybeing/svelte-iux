@@ -194,10 +194,24 @@ I welcome discussion and comment on any aspect of iUX, so feel free to open an i
 
 ## Using Svench
 
-Svench is at this time still a proof of concept and so subject to change, but
-some basics on using it are included below. For latest information on Svench or
-more details on the configuration files see the [Svench
-github](https://github.com/rixo/svench/).
+Svench is a component development workbench for Svelte. It is intended to be
+integrated within a Svelte application project to help development and
+management of components made for the project, or run as part of a separate
+component library as here with Svelte iUX.
+
+Svench lets you browse iUX component documentation and interact with iUX components. You can run your own local instance as explained shortly, or visit the following public instances to explore the Svelte iUX components:
+
+- Production (NOT YET READY): https://svelte-iux.now.sh
+- Development (updated sporadically): https://svelte-iux.zeit-now6.now.sh
+
+Svench is still a proof of concept (as of May 2020) and subject to change, but
+some basics on using it are included below. Svelte iUX is based on the
+[svench-component-template](https://github.com/rixo/svench-component-template),
+so that upstream changes to that can easily be pulled and merged while Svench is
+under development.
+
+For latest information on Svench or more details on the configuration files see
+the [Svench github](https://github.com/rixo/svench/).
 
 ### Prerequisites
 - `node` v12
@@ -214,11 +228,14 @@ yarn
 
 ### Start Svench
 
+The current development instance of svench iUX is available at https://svelte-iux.zeit-now6.now.sh but you will normally run your own instance as follows:
+
 ```bash
 yarn svench
 ```
 
 Open http://localhost:4242. Edit / add things in `./src`.
+
 
 #### build:svench
 
@@ -228,17 +245,16 @@ Build your workbench in `public`. This can be deployed on a public web server.
 
 Note `build` and `dev` scripts are not applicable when using iUX in a Svelte app as this should always compile from source, otherwise different Svelte compilers may be used which will introduce bugs.
 
-They are left in place to simplify merging of upstream changes from https://github.com/rixo/[svench-component-template](https://github.com/rixo/svench-component-template).
+They are left in place to simplify merging of upstream changes from the [svench-component-template](https://github.com/rixo/svench-component-template).
 
 ### Using Svench
 
-Each component has a '.svench' file next to the '.svelte' component file, and this file is used by Svench to create its menu, and provide the context for
-displaying and interacting with the component.
+Each component has a '.svench' file (next to each '.svelte' component file) which
+is used by Svench to create its menu and provide the context for displaying and
+interacting with the component.
 
 For more on these, see the [Svench README](https://github.com/rixo/svench/).
 
 ## LICENSE
-See LICENSE. 
 
-TL;DR:
-- **Svelte iUX** Compnents are under GPLv3
+**Svelte iUX** Compnents are under GPLv3 (for details see ./LICENSE)
