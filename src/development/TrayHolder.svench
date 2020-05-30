@@ -1,0 +1,48 @@
+<script>
+  import { View } from 'svench'
+  import TrayHolder from './TrayHolder.svelte'
+  import Tray from './Tray.svelte'
+
+  let knobs={width: '200px'};
+</script>
+
+<View name="two trays"
+  knobs={knobs}
+  let:knobs>
+
+  <div style='width: {knobs.width}' >
+    <TrayHolder>
+      <Tray>
+      Hello
+      </Tray>
+      <Tray>
+      there
+      </Tray>
+    </TrayHolder>
+  </div>
+</View>
+
+<View name="five trays"
+  knobs={knobs}
+  let:knobs>
+
+  <div style='width: {knobs.width}' >
+    <TrayHolder>
+      <Tray>
+      Hello
+      </Tray>
+      <Tray>
+      Hello
+      </Tray>
+      <Tray>
+      Hello
+      </Tray>
+      <Tray>
+      And
+      </Tray>
+      <Tray>
+      Goodbye
+      </Tray>
+    </TrayHolder>
+  </div>
+</View>

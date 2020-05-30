@@ -1,0 +1,24 @@
+<script>
+  import { View } from 'svench';
+  import Tray from './Tray.svelte';
+
+  let testWidth = 420;
+
+  let knobs = {
+    trayIn: true,
+    protrudingHeight: 24,
+    trayStyle: '',
+  };
+</script>
+
+<View name="default"
+  knobs={knobs}
+  let:knobs>
+
+  <div style='position: absolute; left: {-testWidth/2}; width: {testWidth}px;' >
+    <Tray {...knobs}>
+      <button on:click={() => console.log('Hello back')}>Hello</button>
+      <label><br/><br/>^^^^^^ here's a button to press.</label>
+    </Tray>
+  </div>
+</View>
