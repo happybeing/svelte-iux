@@ -1,19 +1,14 @@
 <article>
   <h1>
-    <!-- <span class="icon">🔧</span> -->
     <span class="icon">🔬</span>
     Svench
   </h1>
 
-  <h2>This is your <code>svelte-iux</code> workbench!</h2>
+  ## This is your `svelte-iux` workbench.
 
-  <p>
-    Edit <code>index.svench.svx</code> to customize this page.
-  </p>
+  Edit `index.svench.svx` to customize this page.
 
-  <p>
-    Check <code>example</code> for inspiration.
-  </p>
+  Check `example` for inspiration.
 </article>
 
 <style>

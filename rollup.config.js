@@ -48,10 +48,6 @@ const configs = {
         // The root dir that Svench will parse and watch.
         dir: 'src',
 
-        // The Svench plugins does some code transform, and so it needs to know of
-        // your preprocessors to be able to parse your local Svelte variant.
-        preprocess: [],
-
         extensions: ['.svench', '.svench.svelte', '.svench.svx'],
 
         serve: WATCH && {
@@ -69,6 +65,9 @@ const configs = {
         },
         extensions: ['.svelte', '.svench', '.svx'],
         preprocess: {
+          // $.preprocess is Svench's "combined" preprocessor, it wraps both
+          // Mdsvex preprocessors (configured for Svench), and its own
+          // preprocessor (for static analysis -- eg extract source from views)
           markup: (...args) => $.preprocess(...args),
         },
         hot: HOT && {
