@@ -1,12 +1,14 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import svelte from 'rollup-plugin-svelte-hot'
 import resolve from '@rollup/plugin-node-resolve'
-import pkg from './package.json'
-import Hmr from 'rollup-plugin-hot'
+import hmr from 'rollup-plugin-hot'
+import del from 'rollup-plugin-delete'
 import postcss from 'rollup-plugin-postcss-hot'
-import { mdsvex } from 'mdsvex'
-import svench from 'svench/rollup'
+import { plugin as svench } from 'svench/rollup'
 import addClasses from 'rehype-add-classes'
+
+import pkg from './package.json'
 
 const name = pkg.name
   .replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
@@ -18,26 +20,7 @@ const SVENCH = !!process.env.SVENCH
 const HOT = WATCH
 const PRODUCTION = !WATCH
 
-const preprocess = [
-  mdsvex({
-    extension: '.svx',
-    rehypePlugins: [
-      [
-        addClasses,
-        {
-          '*': 'svench-content svench-content-md',
-        },
-      ],
-    ],
-  }),
-]
-
-const hmr =
-  HOT &&
-  Hmr({
-    public: 'public',
-    inMemory: true,
-  })
+let $
 
 const configs = {
   svench: {
@@ -47,27 +30,37 @@ const configs = {
       dir: 'public/svench',
     },
     plugins: [
+      // NOTE cleaning old builds is required to avoid serving stale static
+      // files from a previous build instead of in-memory files from the dev/hmr
+      // server
+      del({
+        targets: 'public/svench/*',
+        runOnce: true,
+      }),
+
       postcss({
+        hot: HOT,
         extract: path.resolve('public/svench/theme.css'),
         sourceMap: true,
       }),
 
-      svench({
+      ({ $ } = svench({
         // The root dir that Svench will parse and watch.
         dir: 'src',
 
         // The Svench plugins does some code transform, and so it needs to know of
         // your preprocessors to be able to parse your local Svelte variant.
-        preprocess,
+        preprocess: [],
 
         extensions: ['.svench', '.svench.svelte', '.svench.svx'],
 
         serve: WATCH && {
-          host: '0.0.0.0',
+          host: 'localhost',
           port: 4242,
           public: 'public',
+          nollup: 'localhost:42421',
         },
-      }),
+      })),
 
       svelte({
         dev: !PRODUCTION,
@@ -75,7 +68,9 @@ const configs = {
           css.write('public/svench/svench.css')
         },
         extensions: ['.svelte', '.svench', '.svx'],
-        preprocess,
+        preprocess: {
+          markup: (...args) => $.preprocess(...args),
+        },
         hot: HOT && {
           optimistic: true,
           noPreserveState: false,
@@ -84,8 +79,21 @@ const configs = {
 
       resolve(),
 
-      hmr,
+      HOT &&
+        hmr({
+          public: 'public',
+          inMemory: true,
+          compatModuleHot: !HOT, // for terser
+        }),
     ],
+
+    watch: {
+      clearScreen: false,
+      // buildDelay is needed to ensure Svench's code (routes) generator will
+      // pick file changes before Rollup and prevent a double build (if Rollup
+      // first sees a change to src/Foo.svench, then to Svench's routes.js)
+      buildDelay: 100,
+    },
   },
 
   lib: {
@@ -103,15 +111,9 @@ const configs = {
           css.write('dist/bundle.css')
         },
         extensions: ['.svelte'],
-        hot: HOT && {
-          optimistic: true,
-          noPreserveState: false,
-        },
       }),
 
       resolve(),
-
-      hmr,
     ],
   },
 }
