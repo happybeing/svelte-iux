@@ -25,7 +25,7 @@ novice user, without impeding the expert.
 
 ### iUX Aims and Approach
 
-For the new user, the approach is to reduce complexity and introduce 
+For the new user, the approach is to reduce complexity and introduce
 features gradually, avoid overwhelm, increase retention and ease learning. The approach explored by iUX is to:
 
 - Minimise the amount of information presented at any stage, keeping to what is
@@ -43,7 +43,7 @@ application features and to the corresponding areas in UI.
 
 - Ensure a knowledgable user can get directly to any feature and navigate
 around the UI just as easily as if all the complexity were presented
-at once in a user interface they know very well. 
+at once in a user interface they know very well.
 
 Trying to cater for the novice and expert is particularly ambitious as if the former wasn't enough. So to make life a little easier the focus will be on helping the novice, while keeping catering for the expert in mind as an important longer term goal.
 
@@ -59,14 +59,14 @@ This is the first take on what iUX components may be needed and how they can fit
 - [ ] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
 
 ## iUX Component Summary
-In the hierarchy of application structure and workflow we have the following iUX components. 
+In the hierarchy of application structure and workflow we have the following iUX components.
 
 - IUXContainer
   - IUXTabContainer
     - IUXRevealContainer
       - IUXRevealArea
 
-In this preliminary design, other HTML and Svelte UI components will be children of the **IUXRevealArea**. 
+In this preliminary design, other HTML and Svelte UI components will be children of the **IUXRevealArea**.
 
 The purpose of each of these compnents:
 
@@ -84,8 +84,8 @@ Restrictions on which iUX components can be contained by which other iUX compone
 **iuxContainer** is a container for other iUX controls and can be used to create groups and a hierarchy, which provides the high level structure and flows of the user experience (UX). Provides control over how groups of control, probably always of the same type, are arranged within the container.
 
 ### IUXRevealContainer
-**IUXRevealContainer** is a simple control which can reveal UI controls in an 
-area that was previously blank. Multiple regions can be managed within the overall area managed by this control, intended to be shown or hidden in one or more patterns. Example patterns: 
+**IUXRevealContainer** is a simple control which can reveal UI controls in an
+area that was previously blank. Multiple regions can be managed within the overall area managed by this control, intended to be shown or hidden in one or more patterns. Example patterns:
 - **telescope**, where each reveal extends by showing the next region in the sequence, or hides by reversing the sequence
 - **concertina**, where only one of the areas in the sequence is visible at a time, and the user can easily move forward and backward through the sequence. An option will be to indicate the individual sequences and enable the user to click to reveal one without having to visit the intermediate areas in the sequence.
 
@@ -99,7 +99,7 @@ Options may select different behavious, such as to operate horizontally or verti
 **IUXRevealArea** will I imagine will be necessary to define the areas being managed by an **IUXRevealContainer** component.
 
 ### IUXTabContainer
-**IUXTabContainer** is a component for managing multiple areas of UI, such as a set of **IUXRevealContainers**. 
+**IUXTabContainer** is a component for managing multiple areas of UI, such as a set of **IUXRevealContainers**.
 
 It is similar to a traditional tabbed UI, but instead of *switching* between
 tabs, it *slides* each tabbed area in or out to reveal or hide its UI. This is similar to the resizing mode of **IUXRevealContainer** and might in fact be implemented using common code, but for now it has a separate name. It might anyway be easier for developers to understand if this distinction were to be kept, regardless of how it is implemented.
@@ -121,7 +121,7 @@ can't satisfy the ambtions of iUX as explained below!
 Some UIs reduce complexity and overload by showing only a subset of UI for
 controlling a feature, and revealing more UI controls when the user clicks a
 button such as 'Advanced'. This reveals additional UI, which can be hidden again
-if desired. 
+if desired.
 
 It is this simple idea which iUX builds on, and attempts to bring to an entire
 application. The principle appears in other areas such as toolbars or menus which can be configured for simple or advanced users and so on. But ironically this can add to complexity at the same time, and create problems when an option is hidden from the novice rather than offered at just the point they might be ready to learn about it.
@@ -133,7 +133,7 @@ understood.
 
 #### Wizard Dialog
 Another technique which I think has been around even longer than Advanced/Hide
-is the Wizard Dialog: a sequence of pages with 'Next' and 'Back' buttons. 
+is the Wizard Dialog: a sequence of pages with 'Next' and 'Back' buttons.
 
 A Wizard is useful for configuring a feature or initiating a task with complex
 starting conditions. But a Wizard is also limiting and restrictive so only
@@ -144,7 +144,7 @@ combination, which is an example of the extra yard that iUX is going for.
 #### Progressive Disclosure
 As if by magic after sharing the first version of this vision, someone kindly
 introduced me to the term "progressive disclosure" and a quick search reveals a
-few examples (below). 
+few examples (below).
 
 - Mega Menus
 - Overlays and Popovers
