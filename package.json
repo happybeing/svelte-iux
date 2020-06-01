@@ -2,9 +2,10 @@
   "name": "svelte-iux",
   "version": "0.0.1",
   "description": "WORK IN PROGRESS - nothing to see here!",
-  "main": "src/index.js",
   "svelte": "src/index.js",
   "browser": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
   "keywords": [
     "Svelte",
     "components",
