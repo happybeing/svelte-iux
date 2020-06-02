@@ -56,7 +56,7 @@ $: revealOrHide(reveal);
 function revealOrHide(reveal) {
   var box = document.querySelector('.reveal-box');
   if (box) {
-    var isHidden = revealBox.getAttribute('reveal-box-hidden') === 'true';
+    var isHidden = box.getAttribute('reveal-box-hidden') === 'true';
     
     if(isHidden && reveal) {
       doReveal(box)
