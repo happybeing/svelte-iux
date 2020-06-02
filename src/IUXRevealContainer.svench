@@ -9,6 +9,32 @@
   <IUXRevealContainer />
 </View>
 
+<View name="IUXRevealContainer testing"
+  knobs={{show1: true, show2: true, show3: true, show4: true}} let:knobs>
+  <IUXRevealContainer>
+
+    <IUXRevealArea reveal={knobs.show1}>
+      IUXRevealArea 1 has one line of text<br/>
+      oh, actually two lines of text.
+    </IUXRevealArea>
+
+    <IUXRevealArea reveal={knobs.show2}>
+      IUXRevealArea 2 has less text<br/>
+      but still two lines.
+    </IUXRevealArea>
+
+    <IUXRevealArea reveal={knobs.show3}>
+      IUXRevealArea 3 has one line of text<br/>
+      oh, actually two lines of text.
+    </IUXRevealArea>
+
+    <IUXRevealArea reveal={knobs.show4}>
+      IUXRevealArea 4 has less text<br/>
+      but still two lines.
+    </IUXRevealArea>
+
+  </IUXRevealContainer>
+</View>
 
 <View name="IUXRevealArea comparison"
   knobs={{show1: true, show2: true}} let:knobs>

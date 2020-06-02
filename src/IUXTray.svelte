@@ -1,5 +1,5 @@
 <script>
-import TrayButton from './TrayButton.svelte';
+import IUXTrayButton from './IUXTrayButton.svelte';
 
 export let trayIn = true;
 
@@ -47,7 +47,7 @@ $: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
 
 <div class='tray' width='100%' style={traySlideStyle}>
   <div class='tray-content'><slot></slot></div>
-  <div class='top-right'><TrayButton height={buttonSize} width={buttonSize} bind:pointDown={trayIn} /></div>
+  <div class='top-right'><IUXTrayButton height={buttonSize} width={buttonSize} bind:pointDown={trayIn} /></div>
 </div>
 
 

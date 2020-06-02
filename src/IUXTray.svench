@@ -1,8 +1,8 @@
 <script>
   import { View } from 'svench'
-  import IUXContainer from './IUXContainer.svelte'
+  import IUXTray from './IUXTray.svelte'
 </script>
 
 <View name="default">
-  <IUXContainer />
+  <IUXTray />
 </View>
