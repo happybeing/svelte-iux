@@ -1,8 +1,26 @@
 <script>
   import { View } from 'svench'
+  import IUXRevealArea from './IUXRevealArea.svelte'
+  import IUXRevealAreaJS from './IUXRevealAreaJS.svelte'
   import IUXRevealContainer from './IUXRevealContainer.svelte'
 </script>
 
 <View name="default">
   <IUXRevealContainer />
+</View>
+
+
+<View name="IUXRevealArea comparison"
+  knobs={{show1: true, show2: true}} let:knobs>
+  
+  <IUXRevealArea reveal={knobs.show1}>
+  IUXRevealArea one line of text<br/>
+  two lines of text
+  </IUXRevealArea>
+
+  <IUXRevealAreaJS reveal={knobs.show2}>
+  IUXRevealAreaJS one line of text<br/>
+  two lines of text
+  </IUXRevealAreaJS>
+
 </View>
