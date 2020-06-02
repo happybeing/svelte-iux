@@ -14,10 +14,10 @@ let extraStyle = 'width: 450px; position: absolute; top: 100px; left: 10px; righ
 </View>
 
 <View name="IUXRevealContainer testing"
-  knobs={{openTray1: false, tray1style: '',
+  knobs={{openTray1: true, tray1style: '',
           openTray2: false, tray2style: '',
           openTray3: false, tray3style: '',
-          show1: true, show2: true, show3: true, show4: true}} let:knobs>
+          show1: true, show2: false, show3: true, show4: false}} let:knobs>
   
   <div style='width: 400px;'> <!-- Svench doesn't provide container width -->
   <IUXTrayHolder>
