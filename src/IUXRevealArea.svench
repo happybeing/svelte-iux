@@ -8,6 +8,6 @@
 <View name="default" knobs={knobs} let:knobs>
   <IUXRevealArea {...knobs}>
     Here's some text in the reveal area.<br/>
-    and more
+    (Inside IUXRevealArea)
   </IUXRevealArea>
 </View>
