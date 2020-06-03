@@ -12,19 +12,20 @@ import { tweened } from 'svelte/motion';
 import { cubicInOut } from 'svelte/easing';
 
 export let reveal = false;
+export let minHeight = 0;
 export let boxStyle = '';
 let box;
 
 export let timePerPixel = 0.02;
 
 // Need a default initial style before revealOrHide() can use 'box'
-let boxTransition = 'height: ' + (reveal ? 'auto;' : '0px'); 
+let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px'}`; 
 
 $: boxContentHeight = box ? box.scrollHeight : 0;
 
-let styleHide = `height: 0px; transition: height 0.8s ease-in;`;
-$: styleReveal = `height: ${boxContentHeight}px; transition: height 0.8s ease-out;`;
-let styleRevealDone = `height: auto;`;
+$: styleHide = `min-height: ${minHeight}px; height: 0px; transition: height 0.8s ease-in;`;
+$: styleReveal = `min-height: ${minHeight}px; height: ${boxContentHeight}px; transition: height 0.8s ease-out;`;
+$: styleRevealDone = `min-height: ${minHeight}px; height: auto;`;
 
 $: revealOrHide(reveal);
 
