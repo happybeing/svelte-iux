@@ -12,14 +12,17 @@ import { tweened } from 'svelte/motion';
 import { cubicInOut } from 'svelte/easing';
 
 export let reveal = false;
+export let boxStyle = '';
 let box;
 
 export let timePerPixel = 0.02;
 
-let boxStyle = '';
-let styleHide = `height: 0px; transition: height 0.8s ease-in;`;
+// Need a default initial style before revealOrHide() can use 'box'
+let boxTransition = 'height: ' + (reveal ? 'auto;' : '0px'); 
 
 $: boxContentHeight = box ? box.scrollHeight : 0;
+
+let styleHide = `height: 0px; transition: height 0.8s ease-in;`;
 $: styleReveal = `height: ${boxContentHeight}px; transition: height 0.8s ease-out;`;
 let styleRevealDone = `height: auto;`;
 
@@ -32,16 +35,16 @@ async function revealOrHide(reveal) {
 
   if (reveal) {
     box.style.height = '0px';
-    boxStyle = styleReveal;
+    boxTransition = styleReveal;
     await tick();
   } else {
-    const boxTransition = box.style.transition;
+    const savedBoxTransition = box.style.transition;
     box.style.transition = '';
     await tick();
     box.style.height = '' + box.scrollHeight + 'px';
-    box.style.transition = boxTransition;
+    box.style.transition = savedBoxTransition;
     await tick();
-    boxStyle = styleHide;
+    boxTransition = styleHide;
   }
 }
 
@@ -64,6 +67,6 @@ function onTransitionEnd () {
 
 </style>
 
-<div class='reveal-box' bind:this={box} style={boxStyle} on:transitionend={onTransitionEnd} >
+<div class='reveal-box' bind:this={box} style={boxTransition + boxStyle} on:transitionend={onTransitionEnd} >
   <slot></slot>
 </div>

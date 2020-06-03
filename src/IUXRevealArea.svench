@@ -1,15 +1,13 @@
 <script>
-  import { View } from 'svench'
-  import IUXRevealArea from './IUXRevealArea.svelte'
+  import { View } from 'svench';
+  import IUXRevealArea from './IUXRevealArea.svelte';
 
-  let knobs={reveal: true}
+  let knobs={reveal: true, boxStyle: 'border: 1px solid black;'}
 </script>
 
 <View name="default" knobs={knobs} let:knobs>
-  <div style='border: 1px solid'>
-    <IUXRevealArea {...knobs}>
-      Here's some text in the reveal area.<br/>
-      and more
-    </IUXRevealArea>
-  </div>
+  <IUXRevealArea {...knobs}>
+    Here's some text in the reveal area.<br/>
+    and more
+  </IUXRevealArea>
 </View>
