@@ -12,8 +12,12 @@
 // but I've not looked into that yet, and there were more ideas in the article comments.
 
 export let reveal = false;
-let revealBox;
+export let boxStyle = '';
 
+// Need a default initial style until revealOrHide() can use 'box'
+let initialStyle = 'height: ' + (reveal ? 'auto;' : '0px'); 
+
+let revealBox;
 
 function doHide(element) {
   // get the height of the element's inner content, regardless of its actual size
@@ -56,6 +60,7 @@ $: revealOrHide(reveal);
 function revealOrHide(reveal) {
   var box = document.querySelector('.reveal-box');
   if (box) {
+    initialStyle = '';
     var isHidden = box.getAttribute('reveal-box-hidden') === 'true';
     
     if(isHidden && reveal) {
@@ -79,6 +84,6 @@ function revealOrHide(reveal) {
 }
 </style>
 
-<div class='reveal-box' bind:this={revealBox} >
+<div class='reveal-box' bind:this={revealBox} style={boxStyle+initialStyle} >
   <slot></slot>
 </div>
