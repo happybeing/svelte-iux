@@ -75,9 +75,6 @@ function revealOrHide(reveal) {
 
 <style>
 .reveal-box {
-  /* border: 1px solid red;
-  background-color: #fde66d; */
-
   overflow:hidden;
   transition: height 0.8s ease-out;
   height:auto;
