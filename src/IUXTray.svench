@@ -3,6 +3,24 @@
   import IUXTray from './IUXTray.svelte'
 </script>
 
-<View name="default">
-  <IUXTray />
+<View name="default"
+  knobs={{trayIn: true, protrudingHeight: 24, trayStyle: ''}} 
+  let:knobs >
+
+  <IUXTray 
+    knobs={...knobs} >
+    
+    Here's<br/>
+    a<br/>
+    tray<br/>
+    which<br/>
+    should<br/>
+    size<br/>
+    it's<br/>
+    height<br/>
+    to<br/>
+    this<br/>
+    text<br/>
+  </IUXTray>
+
 </View>

@@ -1,0 +1,8 @@
+<script>
+  import { View } from 'svench'
+  import test from './test.svelte'
+</script>
+
+<View name="default">
+  <test />
+</View>

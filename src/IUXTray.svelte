@@ -1,21 +1,22 @@
 <script>
 import IUXTrayButton from './IUXTrayButton.svelte';
+import IUXRevealArea from './IUXRevealArea.svelte';
 
 export let trayIn = true;
 
-export let protrudingHeight = 24;
-export let buttonSize = protrudingHeight - 10;
+$: reveal = !trayIn;  // Controls the IUXRevealArea
+
+// export let height;// TODO
+const minProtusion = 24;
+const buttonSpacing = 10;
+
+export let protrudingHeight = minProtusion;
+export let buttonSize = minProtusion - buttonSpacing;
 export let trayStyle = '';
 
-let height = 100;
-let heightIn = protrudingHeight; 
-let heightOut = height;
-let transitTime = '' + (height * 0.005) +'s';
+$: useButtonSize = Math.max(buttonSize, minProtusion - buttonSpacing);
+$: minHeight = Math.max(buttonSize + buttonSpacing, minProtusion);
 
-$: trayInStyle = `height: ${protrudingHeight}px; transition: height  ${transitTime} ease-in; `;
-$: trayOutStyle = `height: ${heightOut}px; transition: height ${transitTime} ease-in; `;
-
-$: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
 </script>
 
 <style>
@@ -45,9 +46,9 @@ $: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
   }
 </style>
 
-<div class='tray' width='100%' style={traySlideStyle}>
-  <div class='tray-content'><slot></slot></div>
-  <div class='top-right'><IUXTrayButton height={buttonSize} width={buttonSize} bind:pointDown={trayIn} /></div>
-</div>
-
-
+<IUXRevealArea minHeight={minHeight} reveal={reveal}>
+  <div class='tray' style={trayStyle}>
+    <div class='top-right'><IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointDown={trayIn} /></div>
+    <slot></slot>
+  </div>
+</IUXRevealArea>
