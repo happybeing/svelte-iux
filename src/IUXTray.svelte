@@ -1,6 +1,6 @@
 <script>
 import IUXTrayButton from './IUXTrayButton.svelte';
-import IUXRevealAreaJS from './IUXRevealAreaJS.svelte';
+import IUXRevealArea from './IUXRevealArea.svelte';
 
 export let trayIn = true;
 
@@ -46,9 +46,9 @@ $: minHeight = Math.max(buttonSize + buttonSpacing, minProtusion);
   }
 </style>
 
-<IUXRevealAreaJS minHeight={minHeight} reveal={reveal}>
+<IUXRevealArea minHeight={minHeight} reveal={reveal}>
   <div class='tray' style={trayStyle}>
     <div class='top-right'><IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointDown={trayIn} /></div>
     <slot></slot>
   </div>
-</IUXRevealAreaJS>
+</IUXRevealArea>
