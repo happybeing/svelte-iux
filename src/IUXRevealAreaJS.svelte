@@ -11,17 +11,20 @@
 // the element height from the containered elements. Another may be possible with flexbox/flex-grow
 // but I've not looked into that yet, and there were more ideas in the article comments.
 
+import {onMount} from 'svelte';
+
 export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
 
 // Need a default initial style until revealOrHide() can use 'box'
-let initialStyle = `height: ${reveal ? 'auto; ' : '0px; '}`; 
+let initialStyle = '';//`height: ${reveal ? 'auto; ' : '0px; '}`; 
 $: minHeightStyle = `min-height: ${minHeight}px; `;
 
 let revealBox;
 
 function doHide(element) {
+  console.log('doHide');
   // get the height of the element's inner content, regardless of its actual size
   var contentHeight = element.scrollHeight;
   
@@ -43,6 +46,7 @@ function doHide(element) {
 }
 
 function doReveal(element) {
+  console.log('doReveal');
   var contentHeight = element.scrollHeight;
   
   element.style.height = contentHeight + 'px';
@@ -60,19 +64,28 @@ function doReveal(element) {
   element.setAttribute('reveal-box-hidden', 'false');
 }
 
+onMount(() =>{
+  if (reveal) {
+    revealBox.setAttribute('reveal-box-hidden', 'false' );
+    revealBox.style.height = null;
+  } else {
+    revealBox.setAttribute('reveal-box-hidden', 'true' );
+    revealBox.style.height = 0 + 'px';
+  }
+})
+
 $: revealOrHide(reveal);
 
 function revealOrHide(reveal) {
-  var box = document.querySelector('.reveal-box-js');
-  if (box) {
+  if (revealBox) {
     initialStyle = '';
-    var isHidden = box.getAttribute('reveal-box-hidden') === 'true';
+    var isHidden = revealBox.getAttribute('reveal-box-hidden') === 'true';
     
     if(isHidden && reveal) {
-      doReveal(box)
+      doReveal(revealBox)
       revealBox.setAttribute('reveal-box-hidden', 'false')
     } else if (!isHidden && !reveal) {
-      doHide(box);
+      doHide(revealBox);
     }
   }
 }
