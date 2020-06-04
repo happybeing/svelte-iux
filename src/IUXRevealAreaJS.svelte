@@ -16,9 +16,10 @@ import {onMount} from 'svelte';
 export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
+export let transition = 'height 0.8s ease-out; ';
 
 // Need a default initial style until revealOrHide() can use 'box'
-let initialStyle = '';//`height: ${reveal ? 'auto; ' : '0px; '}`; 
+let initialStyle = '';
 $: minHeightStyle = `min-height: ${minHeight}px; `;
 
 let revealBox;
@@ -94,11 +95,11 @@ function revealOrHide(reveal) {
 <style>
 .reveal-box-js {
   overflow: hidden;
-  transition: height 0.8s ease-out;
+  /* transition: height 0.8s ease-out; */
   height: auto;
 }
 </style>
 
-<div class='reveal-box-js' bind:this={revealBox} style={minHeightStyle+initialStyle+boxStyle} >
+<div class='reveal-box-js' bind:this={revealBox} style={minHeightStyle+initialStyle+boxStyle+'transition: '+transition} >
   <slot></slot>
 </div>

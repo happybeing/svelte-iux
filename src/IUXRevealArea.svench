@@ -3,14 +3,28 @@
   import IUXRevealArea from './IUXRevealArea.svelte';
 </script>
 
-<View name='begin visible' knobs={{reveal: true, minHeight: 0, boxStyle: 'border: 1px solid black;'}} let:knobs>
+<View name='begin visible' 
+  knobs={{
+    reveal: true, 
+    minHeight: 0, 
+    transition: 'height 0.8s ease-out; ', 
+    boxStyle: 'border: 1px solid black;'
+  }} let:knobs>
+  
   <IUXRevealArea {...knobs}>
     Here's some text in the reveal area.<br/>
     (Inside IUXRevealArea)
   </IUXRevealArea>
 </View>
 
-<View name='begin hidden' knobs={{reveal: false, minHeight: 0, boxStyle: 'border: 1px solid black;'}} let:knobs>
+<View name='begin hidden' 
+  knobs={{
+    reveal: false, 
+    minHeight: 0, 
+    transition: 'height 0.8s ease-out; ', 
+    boxStyle: 'border: 1px solid black;'
+  }} let:knobs>
+  
   <IUXRevealArea {...knobs}>
     Here's some text in the reveal area.<br/>
     (Inside IUXRevealArea)

@@ -14,17 +14,18 @@ import { cubicInOut } from 'svelte/easing';
 export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
+export let transition = 'height 0.8s ease-out; '
 let box;
 
-export let timePerPixel = 0.02;
+// export let timePerPixel = 0.02;
 
 // Need a default initial style before revealOrHide() can use 'box'
-let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px; '}`; 
+let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px; ' + transition}`; 
 
 $: boxContentHeight = box ? box.scrollHeight : 0;
 
-$: styleHide = `min-height: ${minHeight}px; height: 0px; transition: height 0.8s ease-in;`;
-$: styleReveal = `min-height: ${minHeight}px; height: ${boxContentHeight}px; transition: height 0.8s ease-out;`;
+$: styleHide = `min-height: ${minHeight}px; height: 0px; transition: ${transition}`;
+$: styleReveal = `min-height: ${minHeight}px; height: ${boxContentHeight}px; transition: ${transition}`;
 $: styleRevealDone = `min-height: ${minHeight}px; height: auto; `;
 
 $: revealOrHide(reveal);
