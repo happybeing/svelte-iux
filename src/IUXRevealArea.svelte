@@ -19,13 +19,13 @@ let box;
 export let timePerPixel = 0.02;
 
 // Need a default initial style before revealOrHide() can use 'box'
-let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px'}`; 
+let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px; '}`; 
 
 $: boxContentHeight = box ? box.scrollHeight : 0;
 
 $: styleHide = `min-height: ${minHeight}px; height: 0px; transition: height 0.8s ease-in;`;
 $: styleReveal = `min-height: ${minHeight}px; height: ${boxContentHeight}px; transition: height 0.8s ease-out;`;
-$: styleRevealDone = `min-height: ${minHeight}px; height: auto;`;
+$: styleRevealDone = `min-height: ${minHeight}px; height: auto; `;
 
 $: revealOrHide(reveal);
 
