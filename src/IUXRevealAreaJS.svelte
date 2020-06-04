@@ -12,10 +12,12 @@
 // but I've not looked into that yet, and there were more ideas in the article comments.
 
 export let reveal = false;
+export let minHeight = 0;
 export let boxStyle = '';
 
 // Need a default initial style until revealOrHide() can use 'box'
-let initialStyle = 'height: ' + (reveal ? 'auto;' : '0px'); 
+let initialStyle = `height: ${reveal ? 'auto; ' : '0px; '}`; 
+$: minHeightStyle = `min-height: ${minHeight}px; `;
 
 let revealBox;
 
@@ -45,20 +47,23 @@ function doReveal(element) {
   
   element.style.height = contentHeight + 'px';
 
-  element.addEventListener('transitionend', function(e) {
-    // remove this event listener so it only gets triggered once
-    element.removeEventListener('transitionend', arguments.callee);    
-    // remove "height" from the element's inline styles, so it can return to its initial value
-    element.style.height = null;
-  });
-  
+  function onTransitioned(e) {
+      // remove this event listener so it only gets triggered once
+      element.removeEventListener('transitionend', onTransitioned);
+      // remove "height" from the element's inline styles, so it can return to its initial value
+      element.style.height = null;
+    }
+
+    // when the next css transition finishes (which should be the one we just triggered)
+    element.addEventListener('transitionend', onTransitioned);
+
   element.setAttribute('reveal-box-hidden', 'false');
 }
 
 $: revealOrHide(reveal);
 
 function revealOrHide(reveal) {
-  var box = document.querySelector('.reveal-box');
+  var box = document.querySelector('.reveal-box-js');
   if (box) {
     initialStyle = '';
     var isHidden = box.getAttribute('reveal-box-hidden') === 'true';
@@ -74,13 +79,13 @@ function revealOrHide(reveal) {
 </script>
 
 <style>
-.reveal-box {
-  overflow:hidden;
+.reveal-box-js {
+  overflow: hidden;
   transition: height 0.8s ease-out;
-  height:auto;
+  height: auto;
 }
 </style>
 
-<div class='reveal-box' bind:this={revealBox} style={boxStyle+initialStyle} >
+<div class='reveal-box-js' bind:this={revealBox} style={minHeightStyle+initialStyle+boxStyle} >
   <slot></slot>
 </div>
