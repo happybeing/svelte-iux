@@ -2,11 +2,21 @@
   import { View } from 'svench'
   import IUXRevealAreaJS from './IUXRevealAreaJS.svelte'
 
-  let knobs={reveal: true, boxStyle: 'border: 1px solid black;'}
+  let knobs={reveal: true, minHeight: 0, boxStyle: 'border: 1px solid black;'};
 </script>
 
-<View name="default" knobs={knobs} let:knobs>
+<View name='begin visible' knobs={{reveal: true, minHeight: 0, boxStyle: 'border: 1px solid black;'}} let:knobs>
   <IUXRevealAreaJS {...knobs}>
+    Begin visible.
+    Here's some text in the reveal area.<br/>
+    and more
+    (Inside IUXRevealAreaJS)
+  </IUXRevealAreaJS>
+</View>
+
+<View name='begin hidden' knobs={{reveal: false, minHeight: 0, boxStyle: 'border: 1px solid black;'}} let:knobs>
+  <IUXRevealAreaJS {...knobs}>
+    Begin hidden.
     Here's some text in the reveal area.<br/>
     and more
     (Inside IUXRevealAreaJS)
