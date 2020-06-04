@@ -5,10 +5,9 @@
 
 <View name="default"
   knobs={{trayIn: true, protrudingHeight: 24, trayStyle: ''}} 
-  let:knobs >
+  let:knobs>
 
-  <IUXTray 
-    knobs={...knobs} >
+  <IUXTray  {...knobs} >
     
     Here's<br/>
     a<br/>
