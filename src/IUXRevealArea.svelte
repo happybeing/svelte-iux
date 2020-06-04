@@ -51,7 +51,6 @@ async function revealOrHide(reveal) {
 
 function onTransitionEnd () {
     // remove "height" from inline styles so it can return to its initial value
-    console.log('ontransitionend()')
     if (reveal) {
       console.log('setting auto');
       box.style.height = 'auto';
