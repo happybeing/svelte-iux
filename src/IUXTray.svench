@@ -9,6 +9,7 @@
 
   <IUXTray  {...knobs} >
     
+    Tray using IUXRevealArea<br/>
     Here's<br/>
     a<br/>
     tray<br/>
