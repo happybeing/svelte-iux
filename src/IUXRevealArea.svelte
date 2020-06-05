@@ -21,12 +21,8 @@ let box;
 
 // Need a default initial style before revealOrHide() can use 'box'
 let boxTransition = `min-height: ${minHeight}px; height: ${reveal ? 'auto;' : '0px; ' + 'transition:' + transition}`;
+
 $: boxContentHeight = box ? box.scrollHeight : 0;
-
-$: styleHide = `min-height: ${minHeight}px; height: 0px; transition: ${transition}`;
-$: styleReveal = `min-height: ${minHeight}px; height: ${boxContentHeight}px; transition: ${transition}`;
-$: styleRevealDone = `min-height: ${minHeight}px; height: auto; `;
-
 $: revealOrHide(reveal);
 
 // Note: 'await tick()' allows each change to take effect before making another
@@ -35,17 +31,17 @@ async function revealOrHide(reveal) {
   if (!box) return;
 
   if (reveal) {
-    box.style.height = '0px';
-    boxTransition = styleReveal;
-    await tick();
-  } else {
-    const savedBoxTransition = box.style.transition;
     box.style.transition = '';
     await tick();
-    box.style.height = '' + box.scrollHeight + 'px';
-    box.style.transition = savedBoxTransition;
+    box.style.height = '0px';
     await tick();
-    boxTransition = styleHide;
+    boxTransition = `min-height: ${minHeight}px; height: ${box.scrollHeight}px; transition: ${transition}`;
+  } else {
+    box.style.transition = '';
+    await tick();
+    box.style.height = `${box.scrollHeight}px`;
+    await tick();
+    boxTransition = `min-height: ${minHeight}px; height: 0px; transition: ${transition}`;
   }
 }
 
