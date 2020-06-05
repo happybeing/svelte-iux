@@ -6,7 +6,7 @@ export let trayIn = true;
 
 $: reveal = !trayIn;  // Controls the IUXRevealAreaJS
 
-// export let height;// TODO
+// export let height;// TODO?
 const minProtusion = 24;
 const buttonSpacing = 10;
 
@@ -24,8 +24,6 @@ $: minHeight = Math.max(buttonSize + buttonSpacing, minProtusion);
     position: relative;
     width: 100%;
     top: 0px;
-    border: 1px solid black;
-    background-color: rgba(232, 170, 127, 1);
     overflow: hidden;
   }
 
