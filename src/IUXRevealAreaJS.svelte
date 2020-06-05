@@ -18,8 +18,6 @@ export let minHeight = 0;
 export let boxStyle = '';
 export let transition = 'height 0.8s ease-out; ';
 
-// Need a default initial style until revealOrHide() can use 'box'
-let initialStyle = '';
 $: minHeightStyle = `min-height: ${minHeight}px; `;
 
 let revealBox;
@@ -27,9 +25,9 @@ let revealBox;
 function doHide(element) {
   console.log('doHide');
   // get the height of the element's inner content, regardless of its actual size
-  var contentHeight = element.scrollHeight;
+  const contentHeight = element.scrollHeight;
   
-  var elementTransition = element.style.transition;  // disable all css transitions
+  const elementTransition = element.style.transition;  // disable all css transitions
   element.style.transition = '';
   
   // When the above style change has taken set the height to transition from
@@ -79,7 +77,6 @@ $: revealOrHide(reveal);
 
 function revealOrHide(reveal) {
   if (revealBox) {
-    initialStyle = '';
     var isHidden = revealBox.getAttribute('reveal-box-hidden') === 'true';
     
     if(isHidden && reveal) {
@@ -100,6 +97,6 @@ function revealOrHide(reveal) {
 }
 </style>
 
-<div class='reveal-box-js' bind:this={revealBox} style={minHeightStyle+initialStyle+boxStyle+'transition: '+transition} >
+<div class='reveal-box-js' bind:this={revealBox} style={minHeightStyle+boxStyle+'transition: '+transition} >
   <slot></slot>
 </div>
