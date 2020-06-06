@@ -4,12 +4,59 @@
 </script>
 
 <View name="default"
-  knobs={{trayIn: true, protrudingHeight: 24, trayStyle: ''}} 
+  knobs={{
+    reveal: false, 
+    heading: 'Tray Heading',
+    headingReveal: '',
+    headingElement: 'b',
+    headingStyle: 'text-align: center; ',
+
+    buttonLabel: 'button label',
+    buttonLabelWhenReveal: '',
+
+    protrudingHeight: 24, 
+    trayStyle: 'width:400px;'
+  }} 
   let:knobs>
 
   <IUXTray  {...knobs} >
-    
-    Tray using IUXRevealArea<br/>
+    <h1>Hidden Content</h1>
+    <p>IUXTray using IUXRevealArea</p>
+    Here's<br/>
+    a<br/>
+    tray<br/>
+    which<br/>
+    should<br/>
+    size<br/>
+    it's<br/>
+    height<br/>
+    to<br/>
+    this<br/>
+    text<br/>
+  </IUXTray>
+
+</View>
+
+<View name="begin visible"
+  knobs={{
+    reveal: true, 
+    heading: 'Tray Heading',
+    headingReveal: '',
+    headingElement: 'b',
+    headingStyle: 'text-align: center; ',
+
+    buttonLabel: 'button label',
+    buttonLabelWhenReveal: '',
+
+    protrudingHeight: 24, 
+    trayStyle: 'width:400px;'
+  }} 
+  let:knobs>
+
+
+  <IUXTray  {...knobs} >
+    <h1>Hidden Content</h1>
+    <p>IUXTray using IUXRevealArea</p>
     Here's<br/>
     a<br/>
     tray<br/>
