@@ -12,7 +12,7 @@
     headingStyle: 'text-align: center; ',
 
     buttonLabel: 'button label',
-    buttonLabelWhenReveal: '',
+    buttonLabelReveal: '',
 
     protrudingHeight: 24, 
     trayStyle: 'width:400px;'
@@ -46,7 +46,7 @@
     headingStyle: 'text-align: center; ',
 
     buttonLabel: 'button label',
-    buttonLabelWhenReveal: '',
+    buttonLabelReveal: '',
 
     protrudingHeight: 24, 
     trayStyle: 'width:400px;'

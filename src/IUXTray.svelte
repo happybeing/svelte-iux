@@ -11,17 +11,19 @@ const buttonSpacing = 10;
 export let reveal = false;
 
 export let heading = '';
-export let headingReveal = heading;
+export let headingReveal = '';
 export let headingElement = 'b';  // Support b, h1, h2, h3
 export let headingStyle = 'text-align: center; ';
 
 export let buttonLabel = '';
-export let buttonLabelWhenReveal = buttonLabel;
+export let buttonLabelReveal = '';
 
 export let protrudingHeight = minProtrusion;
 export let buttonSize = minProtrusion - buttonSpacing;
 export let trayStyle = '';
 
+$: headingReveal = headingReveal === '' ? heading : headingReveal;
+$: buttonLabelReveal = buttonLabelReveal === '' ? buttonLabel : buttonLabelReveal;
 $: useButtonSize = Math.max(buttonSize, minProtrusion - buttonSpacing);
 $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
 
@@ -63,7 +65,7 @@ $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
           <IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
         </div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
-          {!reveal ? buttonLabel : buttonLabelWhenReveal}
+          {!reveal ? buttonLabel : buttonLabelReveal}
         </div>
       </div>
       
