@@ -64,7 +64,7 @@ $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
           <IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
         </div>
-        <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
+        <div on:click={() => {reveal = !reveal}} style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
           {!reveal ? buttonLabel : buttonLabelReveal}
         </div>
       </div>

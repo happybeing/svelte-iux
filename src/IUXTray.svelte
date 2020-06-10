@@ -59,12 +59,12 @@ $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
   <div class='tray' style={trayStyle}>
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
       
-      <div style={'display: block;height: ' + protrudingHeight + 'px; '}>
+      <div style={'cursor: pointer; display: block;height: ' + protrudingHeight + 'px; '}>
         <div style={'width: 100%; height: ' + (protrudingHeight/2-16) + 'px; '}></div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
           <IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
         </div>
-        <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
+        <div on:click={() => {reveal = !reveal}} style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
           {!reveal ? buttonLabel : buttonLabelReveal}
         </div>
       </div>
