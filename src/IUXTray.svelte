@@ -83,7 +83,7 @@ rect.dimmer-active {
 </style>
 
 <IUXRevealArea minHeight={protrudingHeight} reveal={reveal}>
-  <div {disabled} class='tray' style={trayStyle}>
+  <div class='tray' style={trayStyle}>
 
     <div class='dimmer' style={disabled ? '' : 'pointer-events: none;'}>
       <svg class='dimmer' viewBox='0 0 100 100'>
