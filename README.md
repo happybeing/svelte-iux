@@ -257,4 +257,4 @@ For more on these, see the [Svench README](https://github.com/rixo/svench/).
 
 ## LICENSE
 
-**Svelte iUX** Compnents are under GPLv3 (for details see ./LICENSE)
+**Svelte iUX** Components are under GPLv3 (for details see ./LICENSE)
