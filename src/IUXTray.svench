@@ -3,10 +3,9 @@
   import IUXTray from './IUXTray.svelte'
 </script>
 
-<View name="default">
 
 
-<View name="default"
+<View name="default-params"
   knobs={{
     reveal: false, 
     disabled: false,
