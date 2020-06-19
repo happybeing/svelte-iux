@@ -3,9 +3,13 @@
   import IUXTray from './IUXTray.svelte'
 </script>
 
+<View name="default">
+
+
 <View name="default"
   knobs={{
     reveal: false, 
+    disabled: false,
     heading: 'Tray Heading',
     headingReveal: '',
     headingElement: 'b',
@@ -40,6 +44,7 @@
 <View name="begin visible"
   knobs={{
     reveal: true, 
+    disabled: false,
     heading: 'Tray Heading',
     headingReveal: '',
     headingElement: 'b',
