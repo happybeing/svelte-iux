@@ -55,51 +55,16 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
   padding: 0px;
 }
 
-svg.dimmer {
-  height: auto;
-}
-
-rect.dimmer {
-  z-index: 100;
-  fill: gray;
-}
-
-rect.dimmer-inactive {
-  opacity: 0;
-  transition: opacity 1.5s;
-}
-
-rect.dimmer-active {
-  opacity: 0.2;
-  transition: opacity 1.5s;
-  pointer-events: all;
-}
-
-.dimmer {
-  width: 100%; 
-  height: 100%;
-  position: absolute;
-  z-index: 100;
-  overflow: hidden;
-  pointer-events: none;
-}
-
 </style>
 
 <IUXRevealArea {disabled} minHeight={protrudingHeight} reveal={reveal}>
-  <div class='dimmer' style={reveal ? '' : 'height: ' + protrudingHeight + 'px; '}>
-    <svg class='dimmer' viewBox='0 0 100 100' style={true ? '' : 'height: ' + protrudingHeight + 'px; '}>
-      <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} style={disabled ? '' : 'pointer-events: none;'}/>
-    </svg>
-  </div>
-
   <div class='tray' style={trayStyle}>
 
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
       <div style={'cursor: pointer; display: block;height: ' + protrudingHeight + 'px; '}>
         <div style={'width: 100%; height: ' + (protrudingHeight/2-16) + 'px; '}></div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
-          <IUXTrayButton height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
+          <IUXTrayButton {disabled} height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
         </div>
         <div on:click={() => {reveal = !reveal}} style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
           {!reveal ? buttonLabel : buttonLabelReveal}
