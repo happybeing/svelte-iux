@@ -35,7 +35,7 @@ onMount( async () => {
   lastReveal = reveal;  // Reveal state going into revealOrHide()
   box.style.height = 'auto';
   await tick();
-
+  
   console.dir(box);
   console.log('box.offsetTop: ', box.offsetTop);
   console.log('box.offsetHeight: ', box.offsetHeight);
@@ -45,13 +45,11 @@ onMount( async () => {
   let initialHeight = reveal ? Math.max(box.scrollHeight, minHeight) : minHeight;
   initialHeightStyle = `height: ${initialHeight}px; `;
   box.style.height = initialHeight + 'px';
+  dimmerBox.style.height = initialHeight + 'px';
+  await tick();
+
   boxTransition = `${initialHeightStyle + 'transition: ' + transition}`;
 
-  dimmerBox.style.height = initialHeight + 'px';
-
-  // initialHeightStyle = `height: ${reveal ? Math.max(box.scrollHeight, minHeight) : minHeight}px; `;
-  // boxTransition = `${initialHeightStyle + 'transition: ' + transition}`;
-  // dimmerBox.style.height = `${finalHeight}px`;
 });
 
 // Note: 'await tick()' allows each change to take effect before making another
