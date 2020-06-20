@@ -5,6 +5,7 @@
 
 <View name='begin visible' 
   knobs={{
+    disabled: false,
     reveal: true, 
     minHeight: 0, 
     transition: 'height 0.8s ease-out; ', 
@@ -19,6 +20,7 @@
 
 <View name='begin hidden' 
   knobs={{
+    disabled: false,
     reveal: false, 
     minHeight: 0, 
     transition: 'height 0.8s ease-out; ', 
