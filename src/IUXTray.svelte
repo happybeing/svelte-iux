@@ -55,12 +55,6 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
   padding: 0px;
 }
 
-.dimmer {
-  width: 100%; 
-  height: 100%; 
-  position: absolute;
-}
-
 svg.dimmer {
   height: auto;
 }
@@ -78,18 +72,28 @@ rect.dimmer-inactive {
 rect.dimmer-active {
   opacity: 0.2;
   transition: opacity 1.5s;
+  pointer-events: all;
+}
+
+.dimmer {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 </style>
 
-<IUXRevealArea minHeight={protrudingHeight} reveal={reveal}>
-  <div class='tray' style={trayStyle}>
+<IUXRevealArea {disabled} minHeight={protrudingHeight} reveal={reveal}>
+  <div class='dimmer' style={reveal ? '' : 'height: ' + protrudingHeight + 'px; '}>
+    <svg class='dimmer' viewBox='0 0 100 100' style={true ? '' : 'height: ' + protrudingHeight + 'px; '}>
+      <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} style={disabled ? '' : 'pointer-events: none;'}/>
+    </svg>
+  </div>
 
-    <div class='dimmer' style={disabled ? '' : 'pointer-events: none;'}>
-      <svg class='dimmer' viewBox='0 0 100 100'>
-        <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')}/>
-      </svg>
-    </div>
+  <div class='tray' style={trayStyle}>
 
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
       <div style={'cursor: pointer; display: block;height: ' + protrudingHeight + 'px; '}>
