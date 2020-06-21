@@ -37,16 +37,9 @@ onMount( async () => {
   box.style.height = 'auto';
   await tick();
   
-  console.dir(box);
-  console.log('box.offsetTop: ', box.offsetTop);
-  console.log('box.offsetHeight: ', box.offsetHeight);
-  console.log('box.scrollHeight: ', box.scrollHeight);
-  console.log('box.clientHeight: ', box.clientHeight);
-
   let initialHeight = reveal ? Math.max(box.offsetHeight, minHeight) : minHeight;
   initialHeightStyle = `height: ${initialHeight}px; `;
   box.style.height = initialHeight + 'px';
-  // dimmerBox.style.height = initialHeight + 'px';
   await tick();
   dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.scrollHeight}px; `;
 
@@ -82,12 +75,7 @@ $: resizeDimmer(boxW, boxH);
 
 function resizeDimmer (w, h) {
   if (!dimmerBox || !box) return;
-  console.log('resizeDimmer()', w, h);
-  console.dir(box);
-  console.dir(dimmerBox);
 
-  // dimmerBox.style.height = h;// box.style.scrollHeight;
-  // dimmerBox.style.width = w;//box.style.scrollWidth;
   dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
 }
 
@@ -99,17 +87,14 @@ function onTransitionEnd () {
 
   // remove "height" from inline styles so it can return to its initial value
   if (reveal) {
-    console.log('setting auto');
     box.style.height = 'auto';
     box.style.width = 'auto';
   }
 
   initialHeightStyle = '';
+
   // Keep height in sync with container
-  // dimmerBox.style.width = box.style.width;
-  // dimmerBox.style.height = `${finalHeight}px`;
   dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
-  // dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${finalHeight}px; `;
 }
 
 </script>
@@ -118,6 +103,11 @@ function onTransitionEnd () {
 .reveal-box {
   overflow: hidden;
   height: auto;
+}
+
+svg.dimmer {
+  position: absolute;
+  z-index: 100;
 }
 
 rect.dimmer {
@@ -138,25 +128,6 @@ rect.dimmer-active {
   pointer-events: all;
 }
 
-svg.dimmer {
-  position: absolute;
-  /* height: auto; */
-  z-index: 100;
-}
-
-div.dimmer {
-  /* width: 100%; 
-  height: 100%; */
-  position: absolute;
-  z-index: 100;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.dimmer {
-  /* width: 100%; 
-  height: 100%; */
-}
 </style>
 
 <div class='reveal-box' 
