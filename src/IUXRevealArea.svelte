@@ -16,7 +16,8 @@ export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
 export let transition = 'height 0.8s ease-out; '
-let box, dimmerBox;
+
+let box, dimmerBox, boxW, boxH;
 
 // export let timePerPixel = 0.02;
 
@@ -26,9 +27,9 @@ let boxTransition;
 
 let lastReveal = reveal;  // Reveal state going into revealOrHide()
 
-$: boxContentHeight = box ? box.scrollHeight : 0;
+$: boxContentHeight = box ? box.offsetHeight : 0;
 $: revealOrHide(reveal);
-$: finalHeight = (reveal ? Math.max(boxContentHeight, minHeight) : minHeight);
+$: finalHeight = (reveal ? Math.max(box ? box.scrollHeight : 0, minHeight) : minHeight);
 
 
 onMount( async () => {
@@ -42,11 +43,12 @@ onMount( async () => {
   console.log('box.scrollHeight: ', box.scrollHeight);
   console.log('box.clientHeight: ', box.clientHeight);
 
-  let initialHeight = reveal ? Math.max(box.scrollHeight, minHeight) : minHeight;
+  let initialHeight = reveal ? Math.max(box.offsetHeight, minHeight) : minHeight;
   initialHeightStyle = `height: ${initialHeight}px; `;
   box.style.height = initialHeight + 'px';
-  dimmerBox.style.height = initialHeight + 'px';
+  // dimmerBox.style.height = initialHeight + 'px';
   await tick();
+  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.scrollHeight}px; `;
 
   boxTransition = `${initialHeightStyle + 'transition: ' + transition}`;
 
@@ -76,6 +78,21 @@ async function revealOrHide(reveal) {
   }
 }
 
+$: resizeDimmer(boxW, boxH);
+
+function resizeDimmer (w, h) {
+  if (!dimmerBox || !box) return;
+  console.log('resizeDimmer()', w, h);
+  console.dir(box);
+  console.dir(dimmerBox);
+
+  // dimmerBox.style.height = h;// box.style.scrollHeight;
+  // dimmerBox.style.width = w;//box.style.scrollWidth;
+  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
+}
+
+let dimmerBoxStyle = '';
+
 function onTransitionEnd () {
   if (!sizeTransitionBegin) return;
   sizeTransitionBegin = false;
@@ -84,11 +101,15 @@ function onTransitionEnd () {
   if (reveal) {
     console.log('setting auto');
     box.style.height = 'auto';
+    box.style.width = 'auto';
   }
 
-  // Keep height in sync with container
   initialHeightStyle = '';
-  dimmerBox.style.height = `${finalHeight}px`;
+  // Keep height in sync with container
+  // dimmerBox.style.width = box.style.width;
+  // dimmerBox.style.height = `${finalHeight}px`;
+  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
+  // dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${finalHeight}px; `;
 }
 
 </script>
@@ -99,18 +120,16 @@ function onTransitionEnd () {
   height: auto;
 }
 
-svg.dimmer {
-  height: auto;
-}
-
 rect.dimmer {
-  z-index: 100;
+  width: 100%;
+  height: 100%;
   fill: gray;
 }
 
 rect.dimmer-inactive {
   opacity: 0;
   transition: opacity 1.5s;
+  pointer-events: none;
 }
 
 rect.dimmer-active {
@@ -119,23 +138,43 @@ rect.dimmer-active {
   pointer-events: all;
 }
 
-.dimmer {
-  width: 100%; 
-  height: 100%;
+svg.dimmer {
+  position: absolute;
+  /* height: auto; */
+  z-index: 100;
+}
+
+div.dimmer {
+  /* width: 100%; 
+  height: 100%; */
   position: absolute;
   z-index: 100;
   overflow: hidden;
   pointer-events: none;
 }
 
+.dimmer {
+  /* width: 100%; 
+  height: 100%; */
+}
 </style>
 
-<div class='reveal-box' bind:this={box} style={boxTransition + boxStyle} on:transitionend={onTransitionEnd} >
-  <div class='dimmer' bind:this={dimmerBox} >
-    <svg class='dimmer' viewBox='0 0 100 100'>
-      <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} style={disabled ? '' : 'pointer-events: none;'}/>
-    </svg>
-  </div>
+<div class='reveal-box' 
+  bind:this={box} 
+  bind:clientWidth={boxW}
+  bind:clientHeight={boxH}
+  style={boxTransition + boxStyle} 
+  on:transitionend={onTransitionEnd} >
 
+  <!-- dimmer = overlay activated to disable content -->  
+  <svg class='dimmer' bind:this={dimmerBox}
+    style={dimmerBoxStyle + (disabled ? '' : 'pointer-events: none;')}
+    viewBox='0 0 100 100'
+    preserveAspectRatio="none">
+    
+    <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} />
+  </svg>
+
+  <!-- component content -->
   <slot></slot>
 </div>
