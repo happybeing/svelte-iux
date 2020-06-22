@@ -33,6 +33,7 @@
 
     buttonLabel: 'button label',
     buttonLabelReveal: '',
+    buttonLabelDisabled: '',
 
     protrudingHeight: 24, 
     foldStyle: 'width:400px;'
@@ -68,6 +69,7 @@
 
     buttonLabel: 'button label',
     buttonLabelReveal: '',
+    buttonLabelDisabled: '',
 
     protrudingHeight: 24, 
     foldStyle: 'width:400px;'
