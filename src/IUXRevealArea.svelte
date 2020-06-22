@@ -1,11 +1,15 @@
 <script>
-// A simple reveal content box, using Svelte transforms.
+// A content holder with reveal/hide feature and support for disabling the content.
 //
-// Based on REPL:
-//   https://svelte.dev/repl/d32ecc5d5a6847148fb85acd44b93640?version=3.23.0
+// Originally based on: https://svelte.dev/repl/d32ecc5d5a6847148fb85acd44b93640?version=3.23.0
 //
-// This is sveltified version of RevealBoxJS.svelte which does the same thing
-// but using JavaScript.
+// This is sveltified, enhanced version of deprecated IUXRevealBoxJS.svelte which
+// used standard JavaScript (e.g. DOM attributes, events and animation frames) and
+// lacks 'disabled' functionality (which could be added).
+//
+// Notes on deprecated IUXRevealBoxJS and related JS components:
+// - deleted after commit: e954913
+// - inspired by JS techniques from: https://css-tricks.com/using-css-transitions-auto-dimensions/
 
 import { tick, onMount } from 'svelte';
 import { tweened } from 'svelte/motion';
