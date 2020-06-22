@@ -1,8 +1,6 @@
 ## iUX Component TODO List
 This is the first take on what iUX components may be needed and how they can fit together:
 
-- [ ] **IUXTrayHolder** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
-
 - [ ] **IUXTray** - holds a sequence of high level, distinct stages
 
 - [ ] **IUXTrayButton** - animated button to open and close a tray
