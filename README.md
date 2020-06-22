@@ -1,20 +1,20 @@
 # Svelte iUX - Component Library
 
-WORK IN PROGRESS - no useful code here yet!
+WORK IN PROGRESS - use at your own peril!
 
 **Svelte incremental UX (iUX)** is a library of experimental web components being used to explore ideas for improving the UX of a complex application: [Visualisation Lab](https://github.com/theWebalyst/visualisation-lab).
 
-iUX components are created for use with the Svelte web framework and in a specific application, but the will I hope be transferrable, hence putting them in a library from the start.
+iUX components are created for use with the Svelte web framework and in a specific application, but the will I hope be of general use so here they are.
 
 #### Join The Discussion
 I welcome discussion of the vision (below) and any collaboration on ideas, testing and code. So feel free to open an issue with questions or contributions of any kind.
 
 #### Svelte and Svench
-This component library uses **Svench**, an experimental workbench for building **Svelte** components, and was made by taking a copy of the [svench/example](https://github.com/rixo/svench/tree/master/example) directory and modifying that.
+This component library uses **Svench**, an experimental workbench for building Svelte components, and was made by forking [svench-component-template]([???](https://github.com/rixo/svench-component-template)) from which to obtain updates and bugfixes to Svench.
 
 # Svelte iUX Vision
 
-None of this is code yet, it has literally just emerged from my head. I haven't even drawn any pictures except in my head (sorry!).
+Here's the early vision which has lead to an initial set of components being trialled in [Visualisation Lab](https://github.com/theWebalyst/visualisation-lab).
 
 ## Revealer Controls
 
@@ -48,63 +48,68 @@ at once in a user interface they know very well.
 Trying to cater for the novice and expert is particularly ambitious as if the former wasn't enough. So to make life a little easier the focus will be on helping the novice, while keeping catering for the expert in mind as an important longer term goal.
 
 ## iUX Component TODO List
-This is the first take on what iUX components may be needed and how they can fit together:
+Current and proposed iUX components and what they do:
 
-- [ ] **IUXContainer** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
+You can test them out live using Svench at [svench-iux](https://svelte-iux.zeit-now6.vercel.app) and in the development version of VisLab which is updated periodically [here](http://vlab.happybeing.com/).
 
-- [ ] **IUXTabContainer** - holds a sequence of high level, distinct stages
+- [x] **IUXRevealArea** - a component used to hide or reveal, enable or disable an area containing HTML or child components.
 
-- [ ] **IUXRevealContainer** - to sequence or manage complexity of subsets of UI within a higher level stage
+- [x] **IUXFold** - a 'reveal area' with a customisable header including a button to open and close it, like a fold in a folding editor.
 
-- [ ] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+- [x] **IUXFoldButton** - an animated SVG button which is used by IUXFold
 
-## iUX Component Summary
-In the hierarchy of application structure and workflow we have the following iUX components.
+- [ ] **IUXRevealContainer** - a placeholder for a component with features to help manage a list of IUXRevealArea or IUXFold components
 
-- IUXContainer
-  - IUXTabContainer
-    - IUXRevealContainer
-      - IUXRevealArea
+## iUX Component Uses
 
-In this preliminary design, other HTML and Svelte UI components will be children of the **IUXRevealArea**.
+The envisaged purpose of of these compnents:
 
-The purpose of each of these compnents:
+- **IUXFold** - defines a high level stage or section of UI which can be hidden under a heading, and opened by clicking on a control button. The whole IUXFold and its content can be enabled or disabled programmatically.
 
-- **IUXContainer** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
+**Example 1:** a sequence of IUXFolds can be used to present a folding UI. Each fold providing a section of UI which can be opened or closed by clicking a button. Opening and closing is done by sliding to reveal or hide the content of the fold, and provides a smoother transition than a traditional tabbed interface.
 
-- **IUXTabContainer** - holds a sequence of high level, distinct stages
+- **IUXRevealArea** - encapsulates small sections of UI which can be revealed progressively. It can also disable and enable the UI it contains, with or without the reveal/hide functionality.
 
-- **IUXRevealContainer** - to sequence or manage complexity of subsets of UI within a higher level stage
+**Example 2:** a sequence of IUXRevealAreas can progressively reveal (or enable) sections of UI as they become relevant.
 
-- **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+**Example 3:** placing a sequence of IUXRevealAreas within an IUXFold allows the contained UI to be enabled and disabled in sub-sections of the fold. 
 
-Restrictions on which iUX components can be contained by which other iUX components are not laid down at this stage. The intention is to support a tree or graph like structure which can be adapted to a variety of application styles and workflows. So there will be a need to have 'higher' level elements contained by 'lower' level components rather than make following the above hierarchy mandatory.
+- **IUXRevealContainer** - to sequence or manage complexity of subsets of UI (IUXFold or IUXRevealArea) within a higher level stage. Not yet functional or specified.
 
-### IUXContainer
-**iuxContainer** is a container for other iUX controls and can be used to create groups and a hierarchy, which provides the high level structure and flows of the user experience (UX). Provides control over how groups of control, probably always of the same type, are arranged within the container.
+Restrictions on which iUX components can be contained by which other iUX components are not laid down at this stage. 
 
-### IUXRevealContainer
-**IUXRevealContainer** is a simple control which can reveal UI controls in an
-area that was previously blank. Multiple regions can be managed within the overall area managed by this control, intended to be shown or hidden in one or more patterns. Example patterns:
+## iUX Techniques
+Some embrionic ideas for techniques that I think will help support the aims of iUX:
+
+- Use transitions when expanding or contracting, revealing or hiding, which
+minimise disruption to the rest of the UI, and so to the user's mental
+model of the system. For example, by not re-arranging existing controls or areas except for specific purposes, see next.
+
+- Rearranging is necessary at certain points in a dynamic, unfolding UI, but it can also be useful. For example as a signal that a new stage in the story is being revealed rather then a step made within the current stage. It may be a signal of completion, and for a well earned pause with an implied pat on the back. And still a rearrange must be done with minimum disruption to the status quo. There's a whiff of gamification here, but for now I don't plan to use that approach overtly because iUX philosophy is to enable choice rather than impose a direction.
+
+- Provide subtle, consistent visual clues which reflect the stages, such as
+shades or boundaries separating areas of incremental change, rather than
+simply adding to a homogenous controls area.
+
+I welcome discussion and comment on any aspect of iUX, so feel free to open an issue for that, or to ask a question etc.
+
+
+### iUX Containers and Transitions
+
+At this stage we have only simple containers without restrictions on what they contain. In future, containers such as an IUXContainer might be used to create groups and a hierarchy to present the high level structure and flows of a user experience (UX) design.
+
+IUX containers will probably come with transitions to match the metaphors involved (such as folding and unfolding). For example, there are some interesting 'folding' transitions used in mobile apps, which could be applied to the IUXFold open and close when held within a IUXFold container.
+
+Ideas for container animations:
 - **telescope**, where each reveal extends by showing the next region in the sequence, or hides by reversing the sequence
 - **concertina**, where only one of the areas in the sequence is visible at a time, and the user can easily move forward and backward through the sequence. An option will be to indicate the individual sequences and enable the user to click to reveal one without having to visit the intermediate areas in the sequence.
 
-A design choice left to the developer will be whether the changes should affect the size of the area used by the **IUXRevealContainer**. It may be tempting to try too many regions or allow too much disruption when using this control, and defaults which have to be consciously overriden by the developer can be used to discourage that once some sensible guidelines have been established. With this in mind, the default will be for an area which does not change size as regions within it are shown or hidden. The default will be to minimise disruption to the user's visual model of the UI.
+### iUX Component Options
+Svelte component parameters are used to provide options for control and customisation (and can be exercised prior to deployment using Svench).
 
-Options may allow for differenet styles of visual clues and features such as area boundaries and navigation controls, according to the degree of structure to be emphasised, navigation features made available and so on.
+Options allow for differenet styles of visual clues and features such as area boundaries and navigation controls, according to the degree of structure to be emphasised, navigation features made available and so on.
 
 Options may select different behavious, such as to operate horizontally or vertically, or in different directions such as left to right, or right to left etc. Or to follow different paths as in left to right + down + left to right, or left to right + down + right to left.
-
-### IUXRevealArea
-**IUXRevealArea** will I imagine will be necessary to define the areas being managed by an **IUXRevealContainer** component.
-
-### IUXTabContainer
-**IUXTabContainer** is a component for managing multiple areas of UI, such as a set of **IUXRevealContainers**.
-
-It is similar to a traditional tabbed UI, but instead of *switching* between
-tabs, it *slides* each tabbed area in or out to reveal or hide its UI. This is similar to the resizing mode of **IUXRevealContainer** and might in fact be implemented using common code, but for now it has a separate name. It might anyway be easier for developers to understand if this distinction were to be kept, regardless of how it is implemented.
-
-It will probably need similar control options as those outlined for the **IUXRevealContainer**, but will have a distinct appearance appropriate for a higher level stage.
 
 ### Related UI Techniques
 
@@ -177,21 +182,6 @@ Sources for the "progressive disclosure" techniques listed above:
 - *Use Progressive Disclosure to Simplify Complexity*, by Jeff Dance ([May 2017](https://www.freshconsulting.com/uiux-principle-51-progressive-disclosure-hides-complexity/))
 - *The art of progressive disclosure in web design,* by Waldo Broodryk ([August, 2016](https://webflow.com/blog/the-art-of-progressive-disclosure-in-web-design))
 
-## iUX Techniques
-Some embrionic ideas for techniques that I think will help support the aims of iUX:
-
-- Use transitions when expanding or contracting, revealing or hiding, which
-minimise disruption to the rest of the UI, and so to the user's mental
-model of the system. For example, by not re-arranging existing controls or areas except for specific purposes, see next.
-
-- Rearranging is necessary at certain points in a dynamic, unfolding UI, but it can also be useful. For example as a signal that a new stage in the story is being revealed rather then a step made within the current stage. It may be a signal of completion, and for a well earned pause with an implied pat on the back. And still a rearrange must be done with minimum disruption to the status quo. There's a whiff of gamification here, but for now I don't plan to use that approach overtly because iUX philosophy is to enable choice rather than impose a direction.
-
-- Provide subtle, consistent visual clues which reflect the stages, such as
-shades or boundaries separating areas of incremental change, rather than
-simply adding to a homogenous controls area.
-
-I welcome discussion and comment on any aspect of iUX, so feel free to open an issue for that, or to ask a question etc.
-
 ## Using Svench
 
 Svench is a component development workbench for Svelte. It is intended to be
@@ -201,8 +191,8 @@ component library as here with Svelte iUX.
 
 Svench lets you browse iUX component documentation and interact with iUX components. You can run your own local instance as explained shortly, or visit the following public instances to explore the Svelte iUX components:
 
-- Production (NOT YET READY): https://svelte-iux.now.sh
-- Development (updated sporadically): https://svelte-iux.zeit-now6.now.sh
+- Production (least unstable): https://svelte-iux.now.sh
+- Development (here be dragons): https://svelte-iux.zeit-now6.vercel.app
 
 Svench is still a proof of concept (as of May 2020) and subject to change, but
 some basics on using it are included below. Svelte iUX is based on the

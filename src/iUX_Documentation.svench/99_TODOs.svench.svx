@@ -1,11 +1,11 @@
 ## iUX Component TODO List
 This is the first take on what iUX components may be needed and how they can fit together:
 
-- [ ] **IUXFold** - holds a sequence of high level, distinct stages
+- [x] **IUXFold** - holds a sequence of high level, distinct stages
 
-- [ ] **IUXFoldButton** - animated button to open and close a fold
+- [x] **IUXFoldButton** - animated button to open and close a fold
 
-- [ ] **IUXRevealContainer** - [optional] container for a sequence or to manage complexity of subsets of UI within a higher level stage
+- [x] **IUXRevealContainer** - [optional] container for a sequence or to manage complexity of subsets of UI within a higher level stage
 
-- [ ] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+- [x] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
 
