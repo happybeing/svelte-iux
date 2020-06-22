@@ -4,8 +4,25 @@
 </script>
 
 
+<View name="default no params">
+  <IUXTray>
+    <h1>Hidden Content</h1>
+    <p>IUXTray using IUXRevealArea</p>
+    Here's<br/>
+    a<br/>
+    tray<br/>
+    which<br/>
+    should<br/>
+    size<br/>
+    it's<br/>
+    height<br/>
+    to<br/>
+    this<br/>
+    text<br/>
+  </IUXTray>
+</View>
 
-<View name="default-params"
+<View name="default params"
   knobs={{
     reveal: false, 
     disabled: false,

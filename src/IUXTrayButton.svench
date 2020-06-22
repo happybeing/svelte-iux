@@ -6,7 +6,23 @@
 <svench:options order={0} />
 
 <View
-  name="default"
+  name="default no params"
+  knobs={{ 
+    width: 14, 
+    height: 12, 
+    pointUp: true, 
+    fill: '#65b81d',
+    stroke: '#ffd700',
+    strokeWidth: 1 }}
+  let:knobs
+  let:action>
+
+  <IUXTrayButton {...knobs} on:click={action('click')} />
+
+</View>
+
+<View
+  name="default params"
   knobs={{ 
     width: 14, 
     height: 12, 

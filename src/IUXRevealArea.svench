@@ -3,6 +3,14 @@
   import IUXRevealArea from './IUXRevealArea.svelte';
 </script>
 
+<View name='default'>
+  
+  <IUXRevealArea>
+    Here's some text in the reveal area.<br/>
+    (Inside IUXRevealArea)
+  </IUXRevealArea>
+</View>
+
 <View name='begin visible' 
   knobs={{
     disabled: false,

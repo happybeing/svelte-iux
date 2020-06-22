@@ -1,7 +1,6 @@
 <script>
   import { View } from 'svench'
   import IUXRevealArea from './IUXRevealArea.svelte'
-  import IUXRevealAreaJS from './IUXRevealAreaJS.svelte'
   import IUXRevealContainer from './IUXRevealContainer.svelte'
 </script>
 
@@ -43,10 +42,5 @@
   IUXRevealArea one line of text<br/>
   two lines of text
   </IUXRevealArea>
-
-  <IUXRevealAreaJS reveal={knobs.show2}>
-  IUXRevealAreaJS one line of text<br/>
-  two lines of text
-  </IUXRevealAreaJS>
 
 </View>
