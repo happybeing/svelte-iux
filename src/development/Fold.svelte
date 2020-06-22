@@ -1,25 +1,25 @@
 <script>
-import TrayButton from './TrayButton.svelte';
+import FoldButton from './FoldButton.svelte';
 
-export let trayIn = true;
+export let foldIn = true;
 
 export let protrudingHeight = 24;
 export let buttonSize = protrudingHeight - 10;
-export let trayStyle = '';
+export let foldStyle = '';
 
 let height = 100;
 let heightIn = protrudingHeight; 
 let heightOut = height;
 let transitTime = '' + (height * 0.005) +'s';
 
-$: trayInStyle = `height: ${protrudingHeight}px; transition: height  ${transitTime} ease-in; `;
-$: trayOutStyle = `height: ${heightOut}px; transition: height ${transitTime} ease-in; `;
+$: foldInStyle = `height: ${protrudingHeight}px; transition: height  ${transitTime} ease-in; `;
+$: foldOutStyle = `height: ${heightOut}px; transition: height ${transitTime} ease-in; `;
 
-$: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
+$: foldSlideStyle = (foldIn ? foldInStyle : foldOutStyle) + foldStyle;
 </script>
 
 <style>
-  .tray {
+  .fold {
     position: relative;
     width: 100%;
     top: 0px;
@@ -28,7 +28,7 @@ $: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
     overflow: hidden;
   }
 
-  .tray-content {
+  .fold-content {
     position: absolute;
     top: 0px;
     overflow: hidden;
@@ -45,9 +45,9 @@ $: traySlideStyle = (trayIn ? trayInStyle : trayOutStyle) + trayStyle;
   }
 </style>
 
-<div class='tray' width='100%' style={traySlideStyle}>
-  <div class='tray-content'><slot></slot></div>
-  <div class='top-right'><TrayButton height={buttonSize} width={buttonSize} bind:pointUp={trayIn} /></div>
+<div class='fold' width='100%' style={foldSlideStyle}>
+  <div class='fold-content'><slot></slot></div>
+  <div class='top-right'><FoldButton height={buttonSize} width={buttonSize} bind:pointUp={foldIn} /></div>
 </div>
 
 

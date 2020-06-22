@@ -1,7 +1,7 @@
-<!-- An animated button for opening and closing a container 'tray'
+<!-- An animated button for opening and closing a container 'fold'
 
-The idea is for a down arrown (open tray) which animates to become an up 
-arrow (close tray) at during the animation of the tray sliding out, and
+The idea is for a down arrown (open fold) which animates to become an up 
+arrow (close fold) at during the animation of the fold sliding out, and
 vice versa.
 
 -->

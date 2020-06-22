@@ -1,6 +1,6 @@
 <script>
   import { View } from 'svench'
-  import TrayButton from './TrayButton.svelte'
+  import FoldButton from './FoldButton.svelte'
 </script>
 
 <svench:options order={0} />
@@ -17,6 +17,6 @@
   let:knobs
   let:action>
 
-  <TrayButton {...knobs} on:click={action('click')} />
+  <FoldButton {...knobs} on:click={action('click')} />
 
 </View>

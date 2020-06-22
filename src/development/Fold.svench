@@ -1,13 +1,13 @@
 <script>
   import { View } from 'svench';
-  import Tray from './Tray.svelte';
+  import Fold from './Fold.svelte';
 
   let testWidth = 420;
 
   let knobs = {
-    trayIn: true,
+    foldIn: true,
     protrudingHeight: 24,
-    trayStyle: '',
+    foldStyle: '',
   };
 </script>
 
@@ -16,9 +16,9 @@
   let:knobs>
 
   <div style='position: absolute; left: {-testWidth/2}; width: {testWidth}px;' >
-    <Tray {...knobs}>
+    <Fold {...knobs}>
       <button on:click={() => console.log('Hello back')}>Hello</button>
       <label><br/><br/>^^^^^^ here's a button to press.</label>
-    </Tray>
+    </Fold>
   </div>
 </View>

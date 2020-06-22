@@ -1,5 +1,5 @@
 <script>
-import IUXTrayButton from './IUXTrayButton.svelte';
+import IUXFoldButton from './IUXFoldButton.svelte';
 import IUXRevealArea from './IUXRevealArea.svelte';
 
 // TODO: extend headingElement using <svelte:element> if implemented (see https://github.com/sveltejs/svelte/issues/2324)
@@ -21,7 +21,7 @@ export let buttonLabelReveal = '';
 
 export let protrudingHeight = minProtrusion;
 export let buttonSize = minProtrusion - buttonSpacing;
-export let trayStyle = '';
+export let foldStyle = '';
 
 $: headingReveal = headingReveal === '' ? heading : headingReveal;
 $: buttonLabelReveal = buttonLabelReveal === '' ? buttonLabel : buttonLabelReveal;
@@ -32,14 +32,14 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
 </script>
 
 <style>
-.tray {
+.fold {
   position: relative;
   width: 100%;
   top: 0px;
   overflow: hidden;
 }
 
-.tray-content {
+.fold-content {
   position: absolute;
   top: 0px;
   overflow: hidden;
@@ -58,13 +58,13 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
 </style>
 
 <IUXRevealArea {disabled} minHeight={protrudingHeight} reveal={reveal}>
-  <div class='tray' style={trayStyle}>
+  <div class='fold' style={foldStyle}>
 
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
       <div style={'cursor: pointer; display: block;height: ' + protrudingHeight + 'px; '}>
         <div style={'width: 100%; height: ' + (protrudingHeight/2-16) + 'px; '}></div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
-          <IUXTrayButton {disabled} height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
+          <IUXFoldButton {disabled} height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
         </div>
         <div on:click={() => {reveal = !reveal}} style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
           {!reveal ? buttonLabel : buttonLabelReveal}

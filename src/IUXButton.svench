@@ -1,6 +1,6 @@
 <script>
   import { View } from 'svench'
-  import IUXTrayButton from './IUXTrayButton.svelte'
+  import IUXFoldButton from './IUXFoldButton.svelte'
 </script>
 
 <svench:options order={0} />
@@ -17,7 +17,7 @@
   let:knobs
   let:action>
 
-  <IUXTrayButton {...knobs} on:click={action('click')} />
+  <IUXFoldButton {...knobs} on:click={action('click')} />
 
 </View>
 
@@ -33,6 +33,6 @@
   let:knobs
   let:action>
 
-  <IUXTrayButton {...knobs} on:click={action('click')} />
+  <IUXFoldButton {...knobs} on:click={action('click')} />
 
 </View>

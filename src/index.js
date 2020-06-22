@@ -1,4 +1,4 @@
-export { default as IUXTray } from './IUXTray.svelte'
-export { default as IUXTrayButton } from './IUXTrayButton.svelte'
+export { default as IUXFold } from './IUXFold.svelte'
+export { default as IUXFoldButton } from './IUXFoldButton.svelte'
 export { default as IUXRevealContainer } from './IUXRevealContainer.svelte'
 export { default as IUXRevealArea } from './IUXRevealArea.svelte'

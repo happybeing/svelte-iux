@@ -1,16 +1,16 @@
 <script>
   import { View } from 'svench'
-  import IUXTray from './IUXTray.svelte'
+  import IUXFold from './IUXFold.svelte'
 </script>
 
 
 <View name="default no params">
-  <IUXTray>
+  <IUXFold>
     <h1>Hidden Content</h1>
-    <p>IUXTray using IUXRevealArea</p>
+    <p>IUXFold using IUXRevealArea</p>
     Here's<br/>
     a<br/>
-    tray<br/>
+    fold<br/>
     which<br/>
     should<br/>
     size<br/>
@@ -19,14 +19,14 @@
     to<br/>
     this<br/>
     text<br/>
-  </IUXTray>
+  </IUXFold>
 </View>
 
 <View name="default params"
   knobs={{
     reveal: false, 
     disabled: false,
-    heading: 'Tray Heading',
+    heading: 'Fold Heading',
     headingReveal: '',
     headingElement: 'b',
     headingStyle: 'text-align: center; ',
@@ -35,16 +35,16 @@
     buttonLabelReveal: '',
 
     protrudingHeight: 24, 
-    trayStyle: 'width:400px;'
+    foldStyle: 'width:400px;'
   }} 
   let:knobs>
 
-  <IUXTray  {...knobs} >
+  <IUXFold  {...knobs} >
     <h1>Hidden Content</h1>
-    <p>IUXTray using IUXRevealArea</p>
+    <p>IUXFold using IUXRevealArea</p>
     Here's<br/>
     a<br/>
-    tray<br/>
+    fold<br/>
     which<br/>
     should<br/>
     size<br/>
@@ -53,7 +53,7 @@
     to<br/>
     this<br/>
     text<br/>
-  </IUXTray>
+  </IUXFold>
 
 </View>
 
@@ -61,7 +61,7 @@
   knobs={{
     reveal: true, 
     disabled: false,
-    heading: 'Tray Heading',
+    heading: 'Fold Heading',
     headingReveal: '',
     headingElement: 'b',
     headingStyle: 'text-align: center; ',
@@ -70,17 +70,17 @@
     buttonLabelReveal: '',
 
     protrudingHeight: 24, 
-    trayStyle: 'width:400px;'
+    foldStyle: 'width:400px;'
   }} 
   let:knobs>
 
 
-  <IUXTray  {...knobs} >
+  <IUXFold  {...knobs} >
     <h1>Hidden Content</h1>
-    <p>IUXTray using IUXRevealArea</p>
+    <p>IUXFold using IUXRevealArea</p>
     Here's<br/>
     a<br/>
-    tray<br/>
+    fold<br/>
     which<br/>
     should<br/>
     size<br/>
@@ -89,6 +89,6 @@
     to<br/>
     this<br/>
     text<br/>
-  </IUXTray>
+  </IUXFold>
 
 </View>

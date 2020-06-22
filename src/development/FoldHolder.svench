@@ -1,0 +1,48 @@
+<script>
+  import { View } from 'svench'
+  import FoldHolder from './FoldHolder.svelte'
+  import Fold from './Fold.svelte'
+
+  let knobs={width: '200px'};
+</script>
+
+<View name="two folds"
+  knobs={knobs}
+  let:knobs>
+
+  <div style='width: {knobs.width}' >
+    <FoldHolder>
+      <Fold>
+      Hello
+      </Fold>
+      <Fold>
+      there
+      </Fold>
+    </FoldHolder>
+  </div>
+</View>
+
+<View name="five folds"
+  knobs={knobs}
+  let:knobs>
+
+  <div style='width: {knobs.width}' >
+    <FoldHolder>
+      <Fold>
+      Hello
+      </Fold>
+      <Fold>
+      Hello
+      </Fold>
+      <Fold>
+      Hello
+      </Fold>
+      <Fold>
+      And
+      </Fold>
+      <Fold>
+      Goodbye
+      </Fold>
+    </FoldHolder>
+  </div>
+</View>

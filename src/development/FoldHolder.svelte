@@ -2,7 +2,7 @@
 </script>
 
 <style>
-  .tray-holder {
+  .fold-holder {
     position: relative;
     width: 100%;
     border: 1px solid black;
@@ -10,7 +10,7 @@
   }
 </style>
 
-<div class='tray-holder' >
+<div class='fold-holder' >
   <slot></slot>
 </div>
 
