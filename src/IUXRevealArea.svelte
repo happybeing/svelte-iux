@@ -105,6 +105,34 @@ function onTransitionEnd () {
 </script>
 
 <style>
+
+fieldset {
+  /* Fieldset defaults:
+  display: block;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+  border-width: 2px;
+  border-style: groove;
+  border-color: threedface;
+  border-image: initial; 
+  */
+
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-block-start: 0em;
+  padding-inline-start: 0em;
+  padding-inline-end: 0em;
+  padding-block-end: 0em;
+
+  min-inline-size: min-content;
+
+  border-width: 0px;
+}
 .reveal-box {
   overflow: hidden;
   height: auto;
