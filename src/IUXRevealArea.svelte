@@ -152,5 +152,7 @@ rect.dimmer-active {
   </svg>
 
   <!-- component content -->
-  <slot></slot>
+  <fieldset disabled={disabled || !reveal ? 'disabled' : false}>
+    <slot></slot>
+  </fieldset>
 </div>
