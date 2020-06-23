@@ -93,7 +93,7 @@ function onTransitionEnd () {
   if (reveal) {
     box.style.height = 'auto';
     box.style.width = 'auto';
-    box.scrollIntoView({ behavior: 'smooth', block: 'centre' })
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
   initialHeightStyle = '';
