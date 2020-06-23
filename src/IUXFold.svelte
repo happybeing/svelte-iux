@@ -30,6 +30,17 @@ $: useButtonSize = Math.max(buttonSize, minProtrusion - buttonSpacing);
 $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
 
 let disableDuration = 2;  // Duration of disabled/enabled transitions
+
+
+// Keyboard input when in focus
+let buttonDiv;
+function handleKeydown(e) {
+  if(e.keyCode === 32 && buttonDiv === window.document.activeElement) {
+    reveal = !reveal;
+    e.preventDefault();
+  } 
+}
+
 </script>
 
 <style>
@@ -38,6 +49,11 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
   width: 100%;
   top: 0px;
   overflow: hidden;
+}
+
+div.fold-button {
+  cursor: pointer;
+  margin: 3px;
 }
 
 .fold-content {
@@ -58,11 +74,13 @@ let disableDuration = 2;  // Duration of disabled/enabled transitions
 
 </style>
 
+<svelte:window on:keydown={handleKeydown}/>
+    
 <IUXRevealArea {disabled} minHeight={protrudingHeight} reveal={reveal}>
   <div class='fold' style={foldStyle}>
 
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
-      <div style={'cursor: pointer; display: block;height: ' + protrudingHeight + 'px; '}>
+      <div class='fold-button' bind:this={buttonDiv} tabindex=0 role='button' style={'display: block;height: ' + protrudingHeight + 'px; '}>
         <div style={'width: 100%; height: ' + (protrudingHeight/2-16) + 'px; '}></div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
           <IUXFoldButton {disabled} height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
