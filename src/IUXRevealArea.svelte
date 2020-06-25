@@ -20,8 +20,10 @@ export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
 export let transition = 'height 0.8s ease-out; '
+// export let scrollIntoViewReveal = '';
+// export let scrollIntoViewHide = '';
 
-let box, dimmerBox, boxW, boxH;
+let box;
 
 // export let timePerPixel = 0.02;
 
@@ -45,19 +47,18 @@ onMount( async () => {
   initialHeightStyle = `height: ${initialHeight}px; `;
   box.style.height = initialHeight + 'px';
   await tick();
-  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.scrollHeight}px; `;
-
-  boxTransition = `${initialHeightStyle + 'transition: ' + transition}`;
-
+  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${initialHeight}px; `;
 });
 
 // Note: 'await tick()' allows each change to take effect before making another
 
 let sizeTransitionBegin = false;
+
 async function revealOrHide(reveal) {
   console.log('revealOrHide: ', reveal);
-  if (disabled || reveal === lastReveal || !box || !dimmerBox) return;
+  if (disabled || reveal === lastReveal || !box) return;
 
+  dimmerBoxStyle = ''; //???
   lastReveal = reveal;
   sizeTransitionBegin = true;
   if (reveal) {
@@ -75,17 +76,9 @@ async function revealOrHide(reveal) {
   }
 }
 
-$: resizeDimmer(boxW, boxH);
-
-function resizeDimmer (w, h) {
-  if (!dimmerBox || !box) return;
-
-  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
-}
-
 let dimmerBoxStyle = '';
 
-function onTransitionEnd () {
+async function onTransitionEnd () {
   if (!sizeTransitionBegin) return;
   sizeTransitionBegin = false;
 
@@ -93,13 +86,25 @@ function onTransitionEnd () {
   if (reveal) {
     box.style.height = 'auto';
     box.style.width = 'auto';
-    box.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    await tick();
+    // if (scrollIntoViewReveal !== '' )
+    //   box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewReveal })
+  }
+  else {
+    // if (scrollIntoViewHide !== '' )
+    //   box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewHide })
   }
 
   initialHeightStyle = '';
+  resizeDimmer();
+}
 
-  // Keep height in sync with container
-  dimmerBoxStyle = `width: ${box.scrollWidth}px; height: ${box.offsetHeight}px; `;
+function resizeDimmer () {
+  if (reveal) {
+    dimmerBoxStyle = `height: ${Math.max(box.offsetHeight, minHeight)}px; width: ${box.offsetWidth}px; `;
+  } else {
+    dimmerBoxStyle = `height: ${minHeight}px; width: ${box.offsetWidth}px; `;
+  }
 }
 
 </script>
@@ -144,8 +149,6 @@ svg.dimmer {
 }
 
 rect.dimmer {
-  width: 100%;
-  height: 100%;
   fill: gray;
 }
 
@@ -163,20 +166,19 @@ rect.dimmer-active {
 
 </style>
 
+<svelte:window on:resize={resizeDimmer}/>
 <div class='reveal-box' 
-  bind:this={box} 
-  bind:clientWidth={boxW}
-  bind:clientHeight={boxH}
+  bind:this={box}
   style={boxTransition + boxStyle} 
   on:transitionend={onTransitionEnd} >
 
   <!-- dimmer = overlay activated to disable content -->  
-  <svg class='dimmer' bind:this={dimmerBox}
+  <svg class='dimmer'
     style={dimmerBoxStyle + (disabled ? '' : 'pointer-events: none;')}
     viewBox='0 0 100 100'
     preserveAspectRatio="none">
     
-    <rect class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} />
+    <rect width=100 height=100 class={'dimmer ' + (disabled ? 'dimmer-active' : 'dimmer-inactive')} />
   </svg>
 
   <!-- component content -->

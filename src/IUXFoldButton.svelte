@@ -6,8 +6,8 @@ vice versa.
 
 -->
 <script>
-export let width = 14;
-export let height = 12;
+export let width = 22;
+export let height = 20;
 
 export let pointUp = true;
 

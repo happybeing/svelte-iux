@@ -5,7 +5,7 @@ import IUXRevealArea from './IUXRevealArea.svelte';
 // TODO: extend headingElement using <svelte:element> if implemented (see https://github.com/sveltejs/svelte/issues/2324)
 // TODO: ??? export let height;
 
-const minProtrusion = 24;
+const minProtrusion = 50;
 const buttonSpacing = 10;
 
 export let reveal = false;
@@ -26,7 +26,6 @@ export let foldStyle = '';
 
 $: headingReveal = headingReveal === '' ? heading : headingReveal;
 $: buttonLabelReveal = buttonLabelReveal === '' ? buttonLabel : buttonLabelReveal;
-$: useButtonSize = Math.max(buttonSize, minProtrusion - buttonSpacing);
 $: minHeight = Math.max(buttonSize + buttonSpacing, minProtrusion);
 
 let disableDuration = 2;  // Duration of disabled/enabled transitions
@@ -77,14 +76,20 @@ div.fold-button {
 
 <svelte:window on:keydown={handleKeydown} />
     
-<IUXRevealArea {disabled} minHeight={protrudingHeight} reveal={reveal}>
+<IUXRevealArea {disabled} 
+  minHeight={protrudingHeight} 
+  reveal={reveal}
+  scrollIntoViewReveal='start'
+  scrollIntoViewHide='center'
+  >
   <div class='fold' style={foldStyle}>
 
     <div style={'display: flex; flex-direction: row-reverse; min-height: ' + protrudingHeight + 'px; width: 100%;'}>
       <div class='fold-button' bind:this={buttonDiv} tabindex={disabled ? -1 : 0} role='button' style={'display: block;height: ' + protrudingHeight + 'px; '}>
         <div style={'width: 100%; height: ' + (protrudingHeight/2-16) + 'px; '}></div>
         <div style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; '}>
-            <IUXFoldButton {disabled} height={useButtonSize} width={useButtonSize} bind:pointUp={reveal} />
+            <IUXFoldButton 
+              bind:pointUp={reveal} />
         </div>
         <div on:click={() => {reveal = !reveal}} style={'float: right; width: min-content; height: ' + protrudingHeight/2 + 'px; padding-right: 0.3em;'}>
           {disabled ? buttonLabelDisabled : (!reveal ? buttonLabel : buttonLabelReveal)}
