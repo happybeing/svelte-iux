@@ -80,7 +80,7 @@ div.fold-button {
   minHeight={protrudingHeight} 
   reveal={reveal}
   scrollIntoViewReveal='start'
-  scrollIntoViewHide='center'
+  scrollIntoViewHide='start'
   >
   <div class='fold' style={foldStyle}>
 

@@ -16,8 +16,10 @@
     disabled: false,
     reveal: true, 
     minHeight: 0, 
-    transition: 'height 0.8s ease-out; ', 
     boxStyle: 'border: 1px solid black;'
+    transition: 'height 0.8s ease-out; ', 
+    scrollIntoViewReveal='',
+    scrollIntoViewHide=''
   }} let:knobs>
   
   <IUXRevealArea {...knobs}>
@@ -31,8 +33,10 @@
     disabled: false,
     reveal: false, 
     minHeight: 0, 
-    transition: 'height 0.8s ease-out; ', 
     boxStyle: 'border: 1px solid black;'
+    transition: 'height 0.8s ease-out; ', 
+    scrollIntoViewReveal='',
+    scrollIntoViewHide=''
   }} let:knobs>
   
   <IUXRevealArea {...knobs}>

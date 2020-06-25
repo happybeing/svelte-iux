@@ -20,8 +20,8 @@ export let reveal = false;
 export let minHeight = 0;
 export let boxStyle = '';
 export let transition = 'height 0.8s ease-out; '
-// export let scrollIntoViewReveal = '';
-// export let scrollIntoViewHide = '';
+export let scrollIntoViewReveal = '';
+export let scrollIntoViewHide = '';
 
 let box;
 
@@ -87,12 +87,12 @@ async function onTransitionEnd () {
     box.style.height = 'auto';
     box.style.width = 'auto';
     await tick();
-    // if (scrollIntoViewReveal !== '' )
-    //   box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewReveal })
+    if (scrollIntoViewReveal !== '' )
+      box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewReveal })
   }
   else {
-    // if (scrollIntoViewHide !== '' )
-    //   box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewHide })
+    if (scrollIntoViewHide !== '' )
+      box.scrollIntoView({ behavior: 'smooth', block: scrollIntoViewHide })
   }
 
   initialHeightStyle = '';
